@@ -5,9 +5,38 @@ const list = document.querySelector('section');
 
 const selection = document.querySelector('select');
 
-selection.addEventListener('change', getEverybody());
+// Get all the woman in tech field from API
+getAllPersons();
 
-function getEverybody() {
+function getAllPersons() {
+    getData(url).then(data => {
+
+        const persons = data.data;
+
+        var result = persons;
+
+        result.forEach(result => {
+            let personName = result.name;
+            let personImgSrc = result.image;
+            let personTagline = result.tagline;
+
+
+            // Add info to template and repeat for everyone
+            personHTML =
+                `<article>
+                <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
+                <h3>${personName}</h3>
+                <p>${personTagline}</p>
+            </article>`;
+            list.insertAdjacentHTML('beforeend', personHTML);
+        });
+
+    });
+}
+
+
+// Filter the selection of women and refresh who is shown
+selection.addEventListener('change', function getPersonSelection() {
     getData(url).then(data => {
 
         const persons = data.data;
@@ -58,7 +87,7 @@ function getEverybody() {
         });
 
     });
-}
+});
 
 async function getData(URL) {
     return (
