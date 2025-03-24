@@ -9,15 +9,71 @@
     <link rel="stylesheet" href="./style/main.css">
 
     <title>Styling Pulse</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        nav{
+            ul{
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                padding: 1rem;
+            }
+
+            li{
+                height: 30px;
+            }
+
+            img, svg{
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        header{
+            height: 60vh;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+
+            div{
+                display: grid;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
         <ul>
             <li>
-                <img src="" alt="">
+                <img src="SP-Logo.png" alt="SP-Logo">
             </li>
+            <li>
+                <h1>CSS Heartbeat</h1>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+                    <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 L 0 7.5 z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 L 0 22.5 z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 L 0 37.5 z"></path>
+                    </svg>
+            </li>
+
         </ul>
     </nav>
+
+    <header>
+        <div>
+            <h1>Vrouwen in Tech: Een Eerbetoon aan Innovatie en Kracht</h1>
+            <h2>Vieren van de impact van vrouwen die de tech-industrie vormgeven</h2>
+        </div>
+    </header>
 
     <label for="periodSelect">Selecteer een period</label>
     <select name="periodSelect">
