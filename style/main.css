@@ -1,3 +1,58 @@
 img {
     width: 100px;
 }
+
+section:nth-of-type(2){
+    position: absolute;
+    width: 500px;
+    background-color: aqua;
+    height: fit-content;
+    top: 0;
+    right: 0;
+}
+
+/* Custom Select */
+select {
+    appearance: none;
+    @supports (appearance: base-select) {
+  &,
+  &::picker(select) {
+        appearance: base-select;
+      }
+    }
+  }
+   
+   
+  select {
+    display: flex;
+    justify-content: space-between;
+    width: 12em;
+    padding: .5em;
+    background-color: violet;
+    border: 3px violet;
+    border-radius: 5px;
+    color: white;
+    border-radius: 0;
+  
+  &:open::picker-icon {
+       rotate: 180deg;
+       transform-origin: center;
+      }
+  }
+   
+  option {
+    padding: .25em;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+    option:hover {
+      background-color: plum;
+    }
+  &:checked {
+      background-color: violet;
+      color: white;
+    }
+  &::checkmark {
+      display: none;
+    }
+  }
+   
