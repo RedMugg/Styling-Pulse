@@ -2,26 +2,51 @@
 const url = "https://fdnd.directus.app/items/women_in_tech";
 const list = document.querySelector('section');
 
-getEverybody();
 
+const selection = document.querySelector('select');
+
+selection.addEventListener('change', getEverybody());
 
 function getEverybody() {
     getData(url).then(data => {
 
         const persons = data.data;
-        console.log(persons);
+
+        var result = persons;
+        console.log(selection.value);
+
+        switch (selection.value) {
+            case "all":
+                result = persons;
+                console.log(result);
+                break;
+            case "webWeirdness":
+                result = persons.filter((period) => (period.period.includes("web weirdness")));
+                console.log(result);
+                break;
+            case "webPioneer":
+                result = persons.filter((period) => (period.period.includes("web pioneer")));
+                console.log(result);
+                break;
+            case "webMaturity":
+                result = persons.filter((period) => (period.period.includes("web maturity")));
+                console.log(result);
+                break;
+            case "wayBack":
+                result = persons.filter((period) => (period.period.includes("way back")));
+                console.log(result);
+                break;
+        }
 
         const element = document.querySelector("section");
         while (element.firstChild) {
             element.removeChild(element.firstChild);
         }
 
-        const result = persons.filter((period) => word.length > 6);
-
-        persons.forEach(persons => {
-            let personName = persons.name;
-            let personImgSrc = persons.image;
-            let personTagline = persons.tagline;
+        result.forEach(result => {
+            let personName = result.name;
+            let personImgSrc = result.image;
+            let personTagline = result.tagline;
 
             personHTML =
                 `<article>
