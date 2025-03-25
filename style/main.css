@@ -473,7 +473,6 @@ select {
   width: var(--feet-width);
   height: var(--feet-length);
   background: var(--shoe-color);
-  border-radius: 0% 66% 10% 4% / 25% 49% 16% 9% 
 /*   border: 1px solid black; */
 }
 
@@ -599,7 +598,7 @@ select {
   width: var(--feet-width);
   height: var(--feet-length);
   background:  var(--shoe-color);
-  border-radius: 0% 66% 10% 4% / 25% 49% 16% 9% 
+  
 }
 .torso {
   position: absolute;
