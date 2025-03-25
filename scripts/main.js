@@ -1,11 +1,17 @@
 
 const url = "https://fdnd.directus.app/items/women_in_tech";
-const list = document.querySelector('section:nth-of-type(1)');
+const list = document.querySelector('section:nth-of-type(1)>ul');
 const personDetail = document.querySelector('section:nth-of-type(2)');
- 
+
 
 const selection = document.querySelector('select');
 const iFrame = document.querySelector('iframe');
+
+// Get all stage elements
+const gordijnenL = document.querySelector('.gordijnen');
+const gordijnenR = document.querySelector('.right')
+
+var gordijnenOpen = false;
 
 // Get all the woman in tech field from API
 getAllPersons();
@@ -23,14 +29,14 @@ function getAllPersons() {
             let personTagline = result.tagline;
             let personID = result.id;
 
-
             // Add info to template and repeat for everyone
             personHTML =
-                `<article id="${personID}" onclick="getID(this.id)">
+                `<li id="${personID}" onclick="getID(this.id)">
+                <article>
                 <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
                 <h3>${personName}</h3>
-                <p>${personTagline}</p>
-            </article>`;
+            </article>
+            </li>`;
             list.insertAdjacentHTML('beforeend', personHTML);
         });
 
@@ -68,78 +74,100 @@ selection.addEventListener('change', function getPersonSelection() {
                 result = persons.filter((period) => (period.period.includes("way back")));
                 console.log(result);
                 break;
-            }
-            
-            const element = document.querySelector("section");
-            while (element.firstChild) {
-                element.removeChild(element.firstChild);
-            }
-            
-            result.forEach(result => {
-                let personName = result.name;
-                let personImgSrc = result.image;
-                let personTagline = result.tagline;
-                let personID = result.id;
-                
-                personHTML =
-                `<label for="${personID}" id="${personID}" onclick="getID(this.id)">
-                <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
+        }
+
+        const element = document.querySelector("section>ul");
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
+
+        result.forEach(result => {
+            let personName = result.name;
+            let personImgSrc = result.image;
+            let personTagline = result.tagline;
+            let personID = result.id;
+
+            // Add info to template and repeat for everyone
+            personHTML =
+                `<li id="${personID}" onclick="getID(this.id)">
+                <article>
+                <img src="https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
                 <h3>${personName}</h3>
-                <p>${personTagline}</p>
-                <input id="${personID}" name="personCarousel" type="radio">
-            </article>`;
-                list.insertAdjacentHTML('beforeend', personHTML);
-            });
+            </article>
+            </li>`;
+            list.insertAdjacentHTML('beforeend', personHTML);
         });
     });
-    
-    // Get the clicked on persons ID
-    function getID(personIDClicked) {
-        console.log(personIDClicked);
-        
-        getData(url).then(data => {
-            
-            const persons = data.data;
-            console.log(persons);
-            
-            persons.forEach(persons => {
-                
+});
+
+// Get the clicked on persons ID
+function getID(personIDClicked) {
+    if (gordijnenOpen == false) {
+        gordijnenL.style.animation = "gordijnenL 6s ease-in-out";
+        gordijnenL.style.animationFillMode = "forwards";
+        gordijnenR.style.animation = "gordijnenR 6s ease-in-out";
+        gordijnenR.style.animationFillMode = "forwards";
+
+        gordijnenOpen = true;
+    } else if (gordijnenOpen == true) {
+
+        gordijnenL.style.animation = "none";
+        gordijnenR.style.animation = "none";
+        setTimeout(() => {
+            gordijnenL.style.animation = "gordijnenHeropenL 6s ease-in-out";
+            gordijnenL.style.animationFillMode = "forwards";
+
+            gordijnenR.style.animation = "gordijnenHeropenR 6s ease-in-out";
+            gordijnenR.style.animationFillMode = "forwards";
+        }, 10);
+    }
+
+    console.log(personIDClicked);
+
+    getData(url).then(data => {
+
+        const persons = data.data;
+        console.log(persons);
+
+        persons.forEach(persons => {
+
+            setTimeout(() => {
                 if (persons.id == personIDClicked) {
                     let personID = persons.id;
                     let personName = persons.name;
                     let personImgSrc = persons.image;
                     let personTagline = persons.tagline;
-                    
+
                     let personCodepen = persons.codepen;
                     let personPen = persons.codepen_demo;
                     let personFullPenLink = personCodepen + "/embed/" + personPen;
-                    
-                    
+
                     const element = document.querySelector("section:nth-of-type(2)");
                     while (element.firstChild) {
                         element.removeChild(element.firstChild);
                     }
-                    
-                    iFrame.src = personFullPenLink;
-                    
+
+                    // iFrame.src = personFullPenLink;
+
                     personHTML =
-                    `<article id="${personID}" onclick="getID(this.id)">
-                    <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
-                    <h3>${personName}</h3>
-                    <p>${personTagline}</p>
-                    </article>`;
-                    
+                        `<article id="${personID}" onclick="getID(this.id)">
+                        <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
+                        <h3>${personName}</h3>
+                        <p>${personTagline}</p>
+                        </article>`;
+
                     personDetail.insertAdjacentHTML('beforeend', personHTML);
                 } else {
                     console.log("Werkt niet");
                 }
-            })
-        });
-    }
-    
-    
-    // Basic function to retrieve data from the desired url
-    async function getData(URL) {
+            }, 2000);
+        })
+    });
+}
+
+
+// Basic function to retrieve data from the desired url
+async function getData(URL) {
     return (
         fetch(URL)
             .then(

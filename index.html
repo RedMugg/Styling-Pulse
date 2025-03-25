@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +11,18 @@
 
     <title>Styling Pulse</title>
 </head>
+
 <body>
     <header>
 
         <div class="podium-container">
             <div class="podium"></div>
         </div>
-
+    
+        <ul class="stagelights">
+            <li></li>
+            <li></li>
+        </ul>
         
         <div class="gordijn-container"> 
             <ul class="gordijnen">
@@ -72,7 +78,7 @@
                 <li></li>
                 <li></li>
             </ul>
-        </div>
+        </div> 
         
         <ul class="stagelights">
             <div></div>
@@ -81,6 +87,7 @@
             
         </ul>
     </header>
+
     <label for="periodSelect">Selecteer een period</label>
     <select name="periodSelect">
         <option value="all">Everyone</option>
@@ -91,15 +98,67 @@
     </select>
 
     <section>
+        <ul>
+        </ul>
     </section>
 
     <section>
     </section>
 
-    <iframe src="https://codepen.io/thebabydino/embed/mOJvyB" frameborder="0"></iframe>
+    <section class="lopend-persoon">
+       <div class="person">   
+            <!--left arm-->
+            <div class="leftArm">
+                <div class="upperLeftArm">
+                <div class="lowerLeftArm">
+                <div class="leftHand"></div>
+                </div>
+                </div>
+            </div>
+
+            <!--left leg-->
+            <div class="leftLeg">
+                <div class="upperLeftLeg">
+                <div class="lowerLeftLeg">
+                <div class="leftFoot"></div>
+                </div>
+                </div>
+            </div>
+
+            
+
+            <!--right leg-->
+            <div class="rightLeg">
+                <div class="upperRightLeg">
+                <div class="lowerRightLeg">
+                <div class="rightFoot"></div>
+                </div>
+                </div>
+            </div>
+
+            <div class="torso"></div>
+            <div class="head"></div>
+
+            <!--right arm-->
+            <div class="rightArm">
+                <div class="upperRightArm">
+                <div class="lowerRightArm">
+                <div class="rightHand"></div>
+                </div>
+                </div>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <!-- <iframe src="https://codepen.io/thebabydino/embed/mOJvyB" frameborder="0"></iframe> -->
 </body>
 
 <!-- Link Scripts -->
 <script src="./scripts/main.js"></script>
 
 </html>
+
+<!-- test -->
