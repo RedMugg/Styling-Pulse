@@ -67,7 +67,7 @@ header{
       border-bottom-right-radius: 50vw;
       animation: --wave 5s ease-in-out infinite;
       /* animation-delay:  calc(var(--index) * .2s); */
-      animation-delay: calc(sibling-index() * 1000ms);
+      animation-delay: calc(sibling-index() * 200ms);
 
        &:nth-child(2n){
           background-color: darkred;
@@ -136,7 +136,7 @@ header{
 
   
 
-  li{
+  &li{
       width: 16vw;
       height: 56vh;
       background: linear-gradient(to bottom, #6f4da5, transparent);
@@ -150,6 +150,15 @@ header{
   }
 }
 
+.microphoon{
+  display: flex;
+  list-style: none;
+  li{
+    width: 2rem;
+    height: 2rem;
+    background: red;
+  }
+}
 
 img {
     width: 100px;
