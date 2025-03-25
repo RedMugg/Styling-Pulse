@@ -155,7 +155,7 @@ img {
     width: 100px;
 }
 
-section:nth-of-type(2){
+section:nth-of-type(2) {
     position: absolute;
     width: 500px;
     background-color: aqua;
@@ -168,43 +168,50 @@ section:nth-of-type(2){
 select {
     appearance: none;
     @supports (appearance: base-select) {
-  &,
-  &::picker(select) {
+      &,
+      &::picker(select) {
         appearance: base-select;
       }
     }
   }
-   
-   
+  
+  
   select {
     display: flex;
     justify-content: space-between;
     width: 12em;
     padding: .5em;
+   
     background-color: violet;
     border: 3px violet;
     border-radius: 5px;
     color: white;
     border-radius: 0;
-  
-  &:open::picker-icon {
+   
+    
+    &:open::picker-icon {
        rotate: 180deg;
        transform-origin: center;
       }
+    
   }
-   
+  
   option {
     padding: .25em;
+    
     transition-duration: 0.2s;
     transition-timing-function: ease-out;
+    
     option:hover {
       background-color: plum;
     }
-  &:checked {
+    
+    &:checked {
       background-color: violet;
       color: white;
     }
-  &::checkmark {
+    
+    &::checkmark {
       display: none;
     }
   }
