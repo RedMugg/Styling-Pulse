@@ -2,111 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Link CSS -->
-    <link rel="stylesheet" href="./style/main.css">
-
-    <title>Styling Pulse</title>
-
+    <title>Document</title>
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        nav{
-            ul{
-                list-style: none;
-                display: flex;
-                justify-content: space-between;
-                padding: 1rem;
-            }
-
-            li{
-                height: 30px;
-            }
-
-            img, svg{
-                height: 100%;
-                width: 100%;
-            }
+        .one,
+        .two {
+        position: absolute;
+        padding: 1rem;
+        border: 2px solid;
+        background: gold;
         }
 
-        header{
-            height: 60vh;
-            display: flex;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-            div{
-                display: grid;
-                gap: 1rem;
-                background-color: rgb(201, 144, 255);
-                width: 100%;
-                padding: 1rem;
-            }
-
-            h1{
-                font-size: 1.5rem;
-            }
-            h2{
-                font-size: 1.25rem;
-            }
+        .one {
+        anchor-name: --one;
         }
+
+        .two {
+        anchor-name: --two;
+        bottom: 0;
+        right: 0;
+        }
+
+        .anchored {
+        position: absolute;
+        top: anchor(--one bottom);
+        left: anchor(--one right);
+        right: anchor(--two left);
+        bottom: anchor(--two top);
+        display: grid;
+        place-items: center;
+        }
+
+        body {
+        height: 100dvh;
+        font-family: system-ui;
+        font-size: 18px;
+        margin: 0;
+        }
+
+        .anchored {
+        background: skyblue;
+        }
+
+                                                    
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li>
-                <img src="SP-Logo.png" alt="SP-Logo">
-            </li>
-            <li>
-                <h1>CSS Heartbeat</h1>
-            </li>
-            <li>
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-                    <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 L 0 7.5 z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 L 0 22.5 z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 L 0 37.5 z"></path>
-                    </svg>
-            </li>
+<div class="one">one</div>
+<div class="two">two</div>
+<div class="anchored">I am anchored to two elements</div>
 
-        </ul>
-    </nav>
 
-    <header>
-        <div>
-            <h1>Vrouwen in Tech: Een Eerbetoon aan Innovatie en Kracht</h1>
-            <h2>Vieren van de impact van vrouwen die de tech-industrie vormgeven</h2>
-        </div>
-    </header>
-
-    <label for="periodSelect">Selecteer een period</label>
-    <select name="periodSelect">
-        <option value="all">Everyone</option>
-        <option value="webWeirdness">Web Weirdness</option>
-        <option value="webMaturity">Web Maturity</option>
-        <option value="webPioneer">Web Pioneer</option>
-        <option value="wayBack">Way Back</option>
-    </select>
-    <section></section>
-    <section>
-        <!-- <h1>About the webpage</h1>
-        <h2>codes used:</h2>
-        <ul>
-            <li><p>Carousels with CSS </p><ul><li><p>stuck, snapped, scrollable</p></li><li><p>scroll-snap-events</p></li></ul></li>
-            <li><p>Customizable selects</p></li>
-            <li><p>Anchor positioning</p></li>
-            <li><p>sibling-index() en sibling-count()</p></li>
-            <li><p>scroll-driven animations</p></li>
-            <li><p>view-transitions</p></li>
-        </ul> -->
-    </section>
 </body>
-
-<!-- Link Scripts -->
-<script src="./scripts/main.js"></script>
-
 </html>
