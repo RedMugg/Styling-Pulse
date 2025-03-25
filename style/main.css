@@ -209,13 +209,18 @@ select {
     justify-content: space-between;
     width: 12em;
     padding: .5em;
+    margin: .5em;
    
-    background-color: violet;
-    border: 3px violet;
+    background-color: red;
+    border: 3px red;
     border-radius: 5px;
     color: white;
-    border-radius: 0;
-   
+    
+    &::picker(select) {
+      border-radius: 5px;
+      margin-top: .2em;
+      margin-bottom: .2em;
+    }
     
     &:open::picker-icon {
        rotate: 180deg;
@@ -226,6 +231,7 @@ select {
   
   option {
     padding: .25em;
+    border: 1px solid #E8E5E3;
     
     transition-duration: 0.2s;
     transition-timing-function: ease-out;
@@ -235,7 +241,7 @@ select {
     }
     
     &:checked {
-      background-color: violet;
+      background-color: red;
       color: white;
     }
     
