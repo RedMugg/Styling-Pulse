@@ -5,6 +5,7 @@ const personDetail = document.querySelector('section:nth-of-type(2)');
  
 
 const selection = document.querySelector('select');
+const iFrame = document.querySelector('iframe');
 
 // Get all the woman in tech field from API
 getAllPersons();
@@ -81,11 +82,12 @@ selection.addEventListener('change', function getPersonSelection() {
                 let personID = result.id;
                 
                 personHTML =
-                `<article id="${personID}" onclick="getID(this.id)">
+                `<label for="${personID}" id="${personID}" onclick="getID(this.id)">
                 <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
                 <h3>${personName}</h3>
                 <p>${personTagline}</p>
-                </article>`;
+                <input id="${personID}" name="personCarousel" type="radio">
+            </article>`;
                 list.insertAdjacentHTML('beforeend', personHTML);
             });
         });
@@ -99,37 +101,45 @@ selection.addEventListener('change', function getPersonSelection() {
             
             const persons = data.data;
             console.log(persons);
-
+            
             persons.forEach(persons => {
-
-                if (persons.id == personIDClicked) {
-                let personName = persons.name;
-                let personImgSrc = persons.image;
-                let personTagline = persons.tagline;
-                let personID = persons.id;
                 
-                const element = document.querySelector("section:nth-of-type(2)");
-                while (element.firstChild) {
-                    element.removeChild(element.firstChild);
-                }
-    
-                personHTML =
+                if (persons.id == personIDClicked) {
+                    let personID = persons.id;
+                    let personName = persons.name;
+                    let personImgSrc = persons.image;
+                    let personTagline = persons.tagline;
+                    
+                    let personCodepen = persons.codepen;
+                    let personPen = persons.codepen_demo;
+                    let personFullPenLink = personCodepen + "/embed/" + personPen;
+                    
+                    
+                    const element = document.querySelector("section:nth-of-type(2)");
+                    while (element.firstChild) {
+                        element.removeChild(element.firstChild);
+                    }
+                    
+                    iFrame.src = personFullPenLink;
+                    
+                    personHTML =
                     `<article id="${personID}" onclick="getID(this.id)">
                     <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
                     <h3>${personName}</h3>
                     <p>${personTagline}</p>
-                </article>`;
-                personDetail.insertAdjacentHTML('beforeend', personHTML);
+                    </article>`;
+                    
+                    personDetail.insertAdjacentHTML('beforeend', personHTML);
                 } else {
                     console.log("Werkt niet");
                 }
             })
-    });
-}
-
-
-// Basic function to retrieve data from the desired url
-async function getData(URL) {
+        });
+    }
+    
+    
+    // Basic function to retrieve data from the desired url
+    async function getData(URL) {
     return (
         fetch(URL)
             .then(
