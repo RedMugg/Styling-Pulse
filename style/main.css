@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 :root {
@@ -212,11 +213,16 @@ section:nth-of-type(1) {
 
 section:nth-of-type(2) {
   position: absolute;
-  width: 500px;
-  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  
+  padding: .5em;
+  border-radius: 5%;
+  background: linear-gradient(0deg, #cfd9df 0%,#e2ebf0 100%);
   height: fit-content;
-  top: 0;
-  right: 0;
+  top: 15vh;
+  right: 2vw;
 }
 
 .stagelights {
@@ -306,6 +312,9 @@ select {
   border-radius: 5px;
   color: white;
 
+
+
+
   &::picker(select) {
       border-radius: 5px;
       margin-top: .2em;
@@ -374,7 +383,11 @@ option {
 /* Voor desktops */
 @media screen and (min-width: 1024px) {}
 
-/* Card styling/Carousel */
+/* ///////////////////
+Card styling/Carousel 
+////////////////////*/
+
+
 section>ul {
   display: flex;
   overflow-x: auto;
@@ -382,14 +395,17 @@ section>ul {
   scroll-snap-type: x mandatory;
   anchor-name: --carousel;
   width: 100vw;
+  cursor: pointer;
 
   > li {
       container-type: scroll-state ;
-      scroll-snap-align: center;
-
+      /* scroll-snap-align: center;
+      scroll-snap-stop: always;
+       */
       > article {
-        background-color: green;
-          @container not scroll-state(snapped: x) {
+    
+        
+          @container not scroll-state(snapped: x ) {
               interactivity: inert;
               opacity: .25;
           }
@@ -407,6 +423,7 @@ section>ul {
       background: white;
       border-radius: 2em;
       border: none;
+      
 
   }
 
@@ -426,28 +443,51 @@ section>ul {
 section>ul>li {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 40%;
-  box-shadow: 3px 4px 7px 4px grey;
 
-  background-color: lightgrey;
-  /*   border: 2px solid black; */
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  
+ 
+  width: 40%;
+  height: 60%;
+  box-shadow: 2px 2px 5px 0 grey;
+
+  background: linear-gradient(211deg, #9796f0 8%,#FFE7F1 100%);
   border-radius: 1em;
 
   margin: 1em;
   padding: .5em;
+  padding-top: .5em;
 
 }
 
+section> ul> li> article{
+    display: flex;
+    flex-direction: column; 
+}
+
 section>ul>li>article>img {
-  width: 7vw;
-  height: 7vw;
+
+  max-width: 80%;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit:contain;
+  margin: auto;
+  
+
 }
 
 section>ul>li>article>h3 {
   visibility: hidden;
+  
+  width: 6em;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  /* transform: translateY(100%); */
+  /* transition: 0.5s ease-in-out transform 0.5s 0.2s; */
+  position: relative;
+  
+
 }
 
 section>ul>li>p {
@@ -455,12 +495,14 @@ section>ul>li>p {
 }
 
 section>ul>li:hover {
-  article {
-      opacity: 1;
-  }
+    transform: translateY(-5%);    
 
   h3 {
       visibility: visible;
+    
+      opacity: 1;
+      transform: translateY(-150%);
+      transition: .5s ease-in-out;
   }
 
   p {
