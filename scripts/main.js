@@ -152,6 +152,12 @@ function getID(event) {
                     let personName = persons.name;
                     let personImgSrc = persons.image;
                     let personTagline = persons.tagline;
+                    let short_name = persons.short_name;
+                    let period = persons.period;
+                    let website = persons.website;
+                    let country = persons.country;
+                    let github = persons.github;
+                    let work = persons.work;
 
                     let personCodepen = persons.codepen;
                     let personPen = persons.codepen_demo;
@@ -165,11 +171,26 @@ function getID(event) {
                     // iFrame.src = personFullPenLink;
 
                     personHTML =
-                        `<article id="${personID}" onclick="getID(this.id)">
-                        <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
-                        <h3>${personName}</h3>
-                        <p>${personTagline}</p>
-                        </article>`;
+                        // `<article id="${personID}" onclick="getID(this.id)">
+                        // <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
+                        // <h3>${personName}</h3>
+                        // <p>${personTagline}</p>
+                        // </article>`;
+
+                        `   <article class="personsTemplate" id="${personID}" onclick="getID(this.id)">
+                                <ul>
+                                    <li><img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}"></li>
+                                    <li>
+                                        <h1>${personName}</h1>
+                                        <p>${personTagline}</p>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li><p>Short_name:</p><p>Period:</p><p>Country:</p><p>Work:</p><p>Website:</p><p>Github:</p><p>Codepen:</p></li>
+                                    <li><p>${short_name}</p><p>${period}</p><p>${country}</p><p>${work}</p><a href="${website}">${personName}</a><a href="${github}">${github}</a><a href="${personCodepen}">${personCodepen}</a></li>
+                                </ul>
+                                <iframe src="https://www.w3schools.com" title="W3Schools Free Online Web Tutorials"></iframe>
+                            </article>`;
 
                     personDetail.insertAdjacentHTML('beforeend', personHTML);
                 } else {
