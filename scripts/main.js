@@ -130,9 +130,14 @@ function getID(event) {
             gordijnenR.style.animationFillMode = "forwards";
         }, 10);
     }
+<<<<<<< Updated upstream
     const scrollContainer = document.querySelector('.scroll-container')
     console.log(event.target.offsetLeft)
     console.log(scrollContainer)
+=======
+    const scrollContainer = document.querySelector('.scroll-container ul')
+    console.log(event.target.offsetLeft)
+>>>>>>> Stashed changes
     scrollContainer.scrollTo({left: event.target.offsetLeft, top: 0, behavior: 'smooth'
     })
 
