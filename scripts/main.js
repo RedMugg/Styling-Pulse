@@ -1,7 +1,8 @@
 
 const url = "https://fdnd.directus.app/items/women_in_tech";
-const list = document.querySelector("section:nth-of-type(1)>ul");
-const personDetail = document.querySelector(".personDetail");
+const list = document.querySelector('section:nth-of-type(1)>ul');
+const personDetail = document.querySelector('section:nth-of-type(2)');
+
 
 const selection = document.querySelector('select');
 const iFrame = document.querySelector('iframe');
@@ -217,10 +218,10 @@ function getID(event) {
                     let personPen = persons.codepen_demo;
                     let personFullPenLink = personCodepen + "/embed/" + personPen;
 
-          const element = document.querySelector(".personDetail");
-          while (element.firstChild) {
-            element.removeChild(element.firstChild);
-          }
+                    const element = document.querySelector("section:nth-of-type(2)");
+                    while (element.firstChild) {
+                        element.removeChild(element.firstChild);
+                    }
 
                     // iFrame.src = personFullPenLink;
 
