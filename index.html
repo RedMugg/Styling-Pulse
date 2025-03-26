@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
     <!-- Link CSS -->
     <link rel="stylesheet" href="./style/main.css">
@@ -88,14 +91,16 @@
         </ul>
     </header>
 
-    <label for="periodSelect">Selecteer een period</label> 
-    <select name="periodSelect">
-        <option value="all">Everyone</option>
-        <option value="webWeirdness">Web Weirdness</option>
-        <option value="webMaturity">Web Maturity</option>
-        <option value="webPioneer">Web Pioneer</option>
-        <option value="wayBack">Way Back</option>
-    </select>
+    <div class="period-select">
+        <label for="periodSelect">Selecteer een period</label> 
+        <select name="periodSelect">
+            <option value="all">Everyone</option>
+            <option value="webWeirdness">Web Weirdness</option>
+            <option value="webMaturity">Web Maturity</option>
+            <option value="webPioneer">Web Pioneer</option>
+            <option value="wayBack">Way Back</option>
+        </select>
+    </div>
 
     <section class="scroll-container">
         <ul>
