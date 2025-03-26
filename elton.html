@@ -5,53 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .one,
-        .two {
-        position: absolute;
-        padding: 1rem;
-        border: 2px solid;
-        background: gold;
+        article{
+            display: flex;
+            flex-direction: column;
+            max-width: 28rem;
+            background: gray;
+            padding: 1rem;
         }
 
-        .one {
-        anchor-name: --one;
+        ul:nth-of-type(1){
+            display: grid;
+            list-style: none;
+            gap: 2rem;
+            grid-template-columns: 5rem 1fr;
+            justify-content: center;
+            align-items: center;
+            & img{
+                width: 100%;
+                height: auto;
+                justify-self: center;
+            }
         }
 
-        .two {
-        anchor-name: --two;
-        bottom: 0;
-        right: 0;
+        ul:nth-of-type(2){
+            display: grid;
+            list-style: none;
+            grid-template-columns: 1fr 1fr;
+            &li:first-of-type{
+                font-weight: bold;
+            }
         }
 
-        .anchored {
-        position: absolute;
-        top: anchor(--one bottom);
-        left: anchor(--one right);
-        right: anchor(--two left);
-        bottom: anchor(--two top);
-        display: grid;
-        place-items: center;
-        }
-
-        body {
-        height: 100dvh;
-        font-family: system-ui;
-        font-size: 18px;
-        margin: 0;
-        }
-
-        .anchored {
-        background: skyblue;
-        }
-
-                                                    
+        
     </style>
 </head>
 <body>
-<div class="one">one</div>
-<div class="two">two</div>
-<div class="anchored">I am anchored to two elements</div>
-
-
+    <article>
+        <ul>
+            <li><img src="SP-Logo.png" alt=""></li>
+            <li>
+                <h1>Lea Verou</h1>
+                <p>"I make things that help people make things"</p>
+            </li>
+        </ul>
+        <ul>
+            <li><p>Short_name:</p><p>Period:</p><p>Country:</p><p>Work:</p><p>Website:</p><p>Github:</p><p>Codepen:</p></li>
+            <li><p>Lea</p><p>Web pioneer</p><p>Greece</p><p>Font Awesome</p><a href="#">https://lea.verou.me/</a><p>https://github.com/leaverou</p><p>https://codepen.io/leaverou</p></li>
+        </ul>
+        <iframe src="https://www.w3schools.com" title="W3Schools Free Online Web Tutorials"></iframe>
+    </article>
 </body>
 </html>
