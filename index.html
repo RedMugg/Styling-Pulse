@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <!-- Link CSS -->
     <link rel="stylesheet" href="./style/main.css">
@@ -88,16 +91,18 @@
         </ul>
     </header>
 
-    <label for="periodSelect">Selecteer een period</label> 
-    <select name="periodSelect">
-        <option value="all">Everyone</option>
-        <option value="webWeirdness">Web Weirdness</option>
-        <option value="webMaturity">Web Maturity</option>
-        <option value="webPioneer">Web Pioneer</option>
-        <option value="wayBack">Way Back</option>
-    </select>
+    <div class="period-select">
+        <label for="periodSelect">Selecteer een period</label> 
+        <select name="periodSelect">
+            <option value="all">Everyone</option>
+            <option value="webWeirdness">Web Weirdness</option>
+            <option value="webMaturity">Web Maturity</option>
+            <option value="webPioneer">Web Pioneer</option>
+            <option value="wayBack">Way Back</option>
+        </select>
+    </div>
 
-    <section>
+    <section class="scroll-container">
         <ul>
         </ul>
     </section>
@@ -106,54 +111,55 @@
     </section>
 
     <section class="lopend-persoon">
-       <div class="person">   
-            <!--left arm-->
-            <div class="leftArm">
-                <div class="upperLeftArm">
-                <div class="lowerLeftArm">
-                <div class="leftHand"></div>
-                </div>
-                </div>
+        <div class="person-container">
+            <div class="person">   
+                    <!--left arm-->
+                    <div class="leftArm">
+                        <div class="upperLeftArm">
+                        <div class="lowerLeftArm">
+                        <div class="leftHand"></div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!--left leg-->
+                    <div class="leftLeg">
+                        <div class="upperLeftLeg">
+                        <div class="lowerLeftLeg">
+                        <div class="leftFoot"></div>
+                        </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <!--right leg-->
+                    <div class="rightLeg">
+                        <div class="upperRightLeg">
+                        <div class="lowerRightLeg">
+                        <div class="rightFoot"></div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="torso"></div>
+                    <div class="head"></div>
+
+                    <!--right arm-->
+                    <div class="rightArm">
+                        <div class="upperRightArm">
+                        <div class="lowerRightArm">
+                        <div class="rightHand"></div>
+                        </div>
+                        </div>
+                    </div>
+
+                    
+                    
             </div>
-
-            <!--left leg-->
-            <div class="leftLeg">
-                <div class="upperLeftLeg">
-                <div class="lowerLeftLeg">
-                <div class="leftFoot"></div>
-                </div>
-                </div>
-            </div>
-
-            
-
-            <!--right leg-->
-            <div class="rightLeg">
-                <div class="upperRightLeg">
-                <div class="lowerRightLeg">
-                <div class="rightFoot"></div>
-                </div>
-                </div>
-            </div>
-
-            <div class="torso"></div>
-            <div class="head"></div>
-
-            <!--right arm-->
-            <div class="rightArm">
-                <div class="upperRightArm">
-                <div class="lowerRightArm">
-                <div class="rightHand"></div>
-                </div>
-                </div>
-            </div>
-
-            
-            
         </div>
     </section>
 
-    <iframe src="https://codepen.io/thebabydino/embed/mOJvyB" frameborder="0"></iframe>
 </body>
 
 <!-- Link Scripts -->

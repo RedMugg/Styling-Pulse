@@ -31,7 +31,7 @@ function getAllPersons() {
 
             // Add info to template and repeat for everyone
             personHTML =
-                `<li id="${personID}" onclick="getID(this.id)">
+                `<li id="${personID}">
                 <article>
                 <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
                 <h3>${personName}</h3>
@@ -39,6 +39,12 @@ function getAllPersons() {
             </li>`;
             list.insertAdjacentHTML('beforeend', personHTML);
         });
+        const allListItems = document.querySelectorAll('.scroll-container li')
+        // we halen alle list items op en loopen er doorheen
+        allListItems.forEach(listItem => {
+            // gebruik voortaan een button, voor nu ok
+            listItem.addEventListener('click', getID)
+        })
 
     });
 }
@@ -100,8 +106,11 @@ selection.addEventListener('change', function getPersonSelection() {
     });
 });
 
+
+
 // Get the clicked on persons ID
-function getID(personIDClicked) {
+function getID(event) {
+    const personIDClicked = event.target.id
     if (gordijnenOpen == false) {
         gordijnenL.style.animation = "gordijnenL 6s ease-in-out";
         gordijnenL.style.animationFillMode = "forwards";
@@ -121,8 +130,10 @@ function getID(personIDClicked) {
             gordijnenR.style.animationFillMode = "forwards";
         }, 10);
     }
-
-    console.log(personIDClicked);
+    const scrollContainer = document.querySelector('.scroll-container ul')
+    console.log(event.target.offsetLeft)
+    scrollContainer.scrollTo({left: event.target.offsetLeft, top: 0, behavior: 'smooth'
+    })
 
     getData(url).then(data => {
 
@@ -137,6 +148,12 @@ function getID(personIDClicked) {
                     let personName = persons.name;
                     let personImgSrc = persons.image;
                     let personTagline = persons.tagline;
+                    let short_name = persons.short_name;
+                    let period = persons.period;
+                    let website = persons.website;
+                    let country = persons.country;
+                    let github = persons.github;
+                    let work = persons.work;
 
                     let personCodepen = persons.codepen;
                     let personPen = persons.codepen_demo;
@@ -150,11 +167,26 @@ function getID(personIDClicked) {
                     // iFrame.src = personFullPenLink;
 
                     personHTML =
-                        `<article id="${personID}" onclick="getID(this.id)">
-                        <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
-                        <h3>${personName}</h3>
-                        <p>${personTagline}</p>
-                        </article>`;
+                        // `<article id="${personID}" onclick="getID(this.id)">
+                        // <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
+                        // <h3>${personName}</h3>
+                        // <p>${personTagline}</p>
+                        // </article>`;
+
+                        `   <article class="personsTemplate" id="${personID}" onclick="getID(this.id)">
+                                <ul>
+                                    <li><img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}"></li>
+                                    <li>
+                                        <h1>${personName}</h1>
+                                        <p>${personTagline}</p>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li><p>Short_name:</p><p>Period:</p><p>Country:</p><p>Work:</p><p>Website:</p><p>Github:</p><p>Codepen:</p></li>
+                                    <li><p>${short_name}</p><p>${period}</p><p>${country}</p><p>${work}</p><a href="${website}">${personName}</a><a href="${github}">${github}</a><a href="${personCodepen}">${personCodepen}</a></li>
+                                </ul>
+                                <iframe src="https://www.w3schools.com" title="W3Schools Free Online Web Tutorials"></iframe>
+                            </article>`;
 
                     personDetail.insertAdjacentHTML('beforeend', personHTML);
                 } else {

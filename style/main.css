@@ -5,6 +5,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
 :root {
   --height-gordijnen: 50vh;
   --spotlights: 5deg;
@@ -80,8 +81,8 @@ header {
       border-bottom-right-radius: 50vw;
       animation: --wave 5s ease-in-out infinite;
       /* animation-delay:  calc(var(--index) * .2s); */
-
-      &:nth-child(2n) {
+      animation-delay: calc(sibling-index() * 200ms);
+       &:nth-child(2n){
           background-color: darkred;
       }
   }
@@ -273,15 +274,6 @@ section:nth-of-type(2) {
 
 }
 
-iframe {
-  position: absolute;
-  left: 0;
-  top: 0;
-  padding: 0.5%;
-  width: 40vw;
-  height: 45vh;
-}
-
 input[type=radio] {
   display: none;
 }
@@ -305,7 +297,7 @@ select {
   justify-content: space-between;
   width: 12em;
   padding: .5em;
-  margin: .5em;
+  margin-top: .5em;
 
   background-color: red;
   border: 3px red;
@@ -348,6 +340,17 @@ option {
       display: none;
   }
 }
+
+.period-select {
+  margin: .5em;
+}
+
+label {
+  padding-left: .5em;;
+}
+
+
+
 
 
 
@@ -522,14 +525,26 @@ section:nth-of-type(2)>article>img {
 
 /* Lopend persoon */
 
+.lopend-persoon {
+  position: absolute;
+  top: 0;
+  height: 50vh;
+
+  width: 100%;
+}
+
+.person-container {
+  position: absolute;
+    bottom: 0;
+}
 
 .person {
   position: absolute;
 
-  top: 10em;
+  bottom: 0;
   width: 4em;
   height: 11em;
-    border:1px solid #000;
+  border:1px solid #000;
 
   animation-name: WalkingUp, WalkingBack;
   animation-duration: 4s;
@@ -933,3 +948,52 @@ section:nth-of-type(2)>article>img {
       transform: translateY(0);
   }
 }
+
+.personsTemplate{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "a1 a3" "a2 a3";
+  max-width: max-content;
+  background: gray;
+  padding: 1rem;
+
+  & > ul:nth-of-type(1){
+    grid-area: a1;
+    display: grid;
+    list-style: none;
+    gap: 2rem;
+    grid-template-columns: 5rem 1fr;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    & img{
+        width: 100%;
+        height: auto;
+        justify-self: center;
+    }
+  }
+  
+  & > ul:nth-of-type(2){
+    grid-area: a2;
+    display: grid;
+    list-style: none;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+    & li:first-of-type{
+        font-weight: bold;
+    }
+    & li:nth-of-type(2){
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  & iframe{
+    grid-area: a3;
+    width: 100%;
+    height: 100%;
+  }
+  
+}
+
