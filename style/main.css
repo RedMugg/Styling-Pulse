@@ -88,17 +88,13 @@ header{
       border-bottom-right-radius: 50vw;
       animation: --wave 5s ease-in-out infinite;
       /* animation-delay:  calc(var(--index) * .2s); */
-
+      animation-delay: calc(sibling-index() * 200ms);
        &:nth-child(2n){
           background-color: darkred;
       }
   }
 }
 
-.gordijnen li{
-  animation-delay: calc(sibling-index() * 200ms);
-
-}
 
 .topgordijn{
   position: absolute;
@@ -287,7 +283,7 @@ select {
   
 @keyframes --wave{
   0%, 100%{
-      height: var(--height-gordijnen);
+      height: var(--height-gordijnen); 
   }
 
   50%{
