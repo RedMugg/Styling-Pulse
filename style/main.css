@@ -3,6 +3,11 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+
+}
+
+body{
+    overflow: clip;
 }
 
 
@@ -390,21 +395,19 @@ Card styling/Carousel
 section>ul {
   display: flex;
   overflow-x: auto;
-  overscroll-behavior-x: contain;
+  /* overscroll-behavior-x: contain; */
   scroll-snap-type: x mandatory;
   anchor-name: --carousel;
   width: 100vw;
   cursor: pointer;
+ 
 
   > li {
       container-type: scroll-state ;
-      /* scroll-snap-align: center;
-      scroll-snap-stop: always;
-       */
+     
       > article {
-    
-        
-          @container not scroll-state(snapped: x ) {
+
+          @container not scroll-state(snapped: x) {
               interactivity: inert;
               opacity: .25;
           }
@@ -443,7 +446,7 @@ section>ul>li {
   scroll-snap-align: center;
   scroll-snap-stop: always;
   
- 
+
   width: 40%;
   height: 60%;
   box-shadow: 2px 2px 5px 0 grey;
@@ -451,15 +454,20 @@ section>ul>li {
   background: linear-gradient(211deg, #9796f0 8%,#FFE7F1 100%);
   border-radius: 1em;
 
-  margin: 1em;
+  margin: 2em;
   padding: .5em;
   padding-top: .5em;
+  
+ 
 
 }
 
 section> ul> li> article{
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
+    object-fit: cover;
+    
+    overflow: clip;
 }
 
 section>ul>li>article>img {
@@ -472,18 +480,16 @@ section>ul>li>article>img {
 
 }
 
-section>ul>li>article {
-    object-fit: cover;
-}
 
 section>ul>li>article>h3 {
   visibility: hidden;
+  /* display: none; */
   
   width: 6em;
   text-align: center;
   color: white;
   opacity: 0;
-  /* transform: translateY(100%); */
+  transform: translateY(100%);
   /* transition: 0.5s ease-in-out transform 0.5s 0.2s; */
   position: relative;
   
@@ -495,7 +501,7 @@ section>ul>li>p {
 }
 
 section>ul>li:hover {
-    transform: translateY(-5%);    
+    /* transform: translateY(-5%);     */
 
   h3 {
       visibility: visible;
@@ -505,9 +511,7 @@ section>ul>li:hover {
       transition: .5s ease-in-out;
   }
 
-    p {
-        visibility: visible;
-    }
+  
 }
 
 section:nth-of-type(2)>article>img {
