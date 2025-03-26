@@ -79,8 +79,8 @@ header {
       border-bottom-right-radius: 50vw;
       animation: --wave 5s ease-in-out infinite;
       /* animation-delay:  calc(var(--index) * .2s); */
-
-      &:nth-child(2n) {
+      animation-delay: calc(sibling-index() * 200ms);
+       &:nth-child(2n){
           background-color: darkred;
       }
   }
