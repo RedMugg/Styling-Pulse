@@ -1,14 +1,14 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root{
-  --height-gordijnen:50vh;
+:root {
+  --height-gordijnen: 50vh;
   --spotlights: 5deg;
 
-/* Variables voor persoon */
+  /* Variables voor persoon */
   --arm-width: .75em;
   --arm-length: 1.25em;
   --leg-width: 1em;
@@ -20,66 +20,57 @@
   --torso-width: 3em;
   --torso-length: 5em;
 
-  --person-width: 4em;
-  
   --skin-color: #FFD9AB;
-  --suit-color: violet;
+  --suit-color: rgb(224, 139, 208);
   --shoe-color: black;
-  
+  --broek: rgb(116, 116, 180);
+
   --walk-speed: 1.5s;
   --iteration-count: 3;
-}  
+}
 
-header{
+header {
   position: relative;
   height: 70vh;
   background: black;
   overflow: hidden;
 
-  &:hover .gordijnen{
-  transform: translateX(-50vw) rotate(3deg) translateY(-2vh);
-  transition: 3s;
-  }
-
-  &:hover .right{
-      transform: translateX(50vw) rotate(-3deg) translateY(-2vh);
-      transition: 3s;
-  }
-
-  &:hover .topgordijn{
+  &:hover .topgordijn {
       transform: translateY(-5vh);
       transition: 3s;
   }
 
-  &:hover .stagelights li:nth-of-type(1){
+  &:hover .stagelights li:nth-of-type(1) {
       transform: rotate(calc(var(--spotlights) * -1));
       transition: 3s;
   }
 
-  &:hover .stagelights li:nth-of-type(2){
+  &:hover .stagelights li:nth-of-type(2) {
       transform: rotate(var(--spotlights));
       transition: 3s;
   }
 }
 
-.gordijn-container{
-  display: flex;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+@keyframes gordijnenL {
+  100% {
+      transform: translateX(-50vw) rotate(3deg) translateY(-2vh);
+      animation-fill-mode: forwards;
+  }
 }
 
-.right{
+.right {
   display: flex;
   flex-direction: row-reverse;
 }
-.gordijnen{
+
+.gordijnen {
   list-style: none;
   display: flex;
   width: 50vw;
   transition: 3s;
   z-index: 5;
-  & li{
+
+  & li {
 
       height: var(--height-gordijnen);
       width: 15%;
@@ -90,13 +81,50 @@ header{
       /* animation-delay:  calc(var(--index) * .2s); */
       animation-delay: calc(sibling-index() * 200ms);
 
-       &:nth-child(2n){
+      &:nth-child(2n) {
           background-color: darkred;
       }
   }
 }
 
-.topgordijn{
+@keyframes gordijnenR {
+  100% {
+      transform: translateX(50vw) rotate(-3deg) translateY(-2vh);
+  }
+}
+
+@keyframes gordijnenHeropenL {
+
+  0%,
+  100% {
+      transform: translateX(-50vw) rotate(3deg) translateY(-2vh);
+  }
+
+  50% {
+      transform: translateX(0) rotate(0) translateY(0vh);
+  }
+}
+
+@keyframes gordijnenHeropenR {
+
+  0%,
+  100% {
+      transform: translateX(50vw) rotate(-3deg) translateY(-2vh);
+  }
+
+  50% {
+      transform: translateX(0) rotate(0) translateY(0vh);
+  }
+}
+
+.gordijn-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.topgordijn {
   position: absolute;
   width: 100%;
   height: 10vh;
@@ -104,68 +132,95 @@ header{
   list-style: none;
   transition: 3s;
   z-index: 6;
-  li{
+
+  li {
       width: 5%;
       height: 60%;
       border-radius: 0 0 2vw 2vw;
       background-color: darkred;
 
-      &:nth-child(2n){
+      &:nth-child(2n) {
           background: red;
-          background-image: radial-gradient( circle at 50% 50%, #d80000 , transparent);
+          background-image: radial-gradient(circle at 50% 50%, #d80000, transparent);
       }
   }
 }
 
-.podium-container{
-  position: absolute;            
+.podium-container {
+  position: absolute;
   width: 100%;
   bottom: 0;
 }
 
-.podium{
+.podium {
   position: relative;
   height: 14vh;
   width: 100%;
-  &::after{
-          content: '';
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(to bottom, rgb(211, 179, 0) 20%,rgb(224, 191, 0) 0 23% , gold 0 40%, gold);
-      }
-      &::before{
-          content: '';
-          position: absolute;
-          bottom: 3vh;
-          width: 100%;
-          height: 40vh;
-          transform: perspective(421px) rotateX(72deg);
-          background: repeating-linear-gradient(to right, black 0 1%, #a35320 0 8vw);
-      }
+
+  &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgb(211, 179, 0) 20%, rgb(224, 191, 0) 0 23%, gold 0 40%, gold);
+  }
+
+  &::before {
+      content: '';
+      position: absolute;
+      bottom: 3vh;
+      width: 100%;
+      height: 40vh;
+      transform: perspective(421px) rotateX(72deg);
+      background: repeating-linear-gradient(to right, black 0 1%, #a35320 0 8vw);
+  }
 }
 
+.stagelights {
+  position: absolute;
+  height: 10vh;
+  width: 100%;
+  top: 0;
+  justify-content: space-evenly;
+  display: flex;
+  list-style: none;
+  /* z-index: 7; */
 
-img {
-    width: 100px;
+  li {
+      width: 16vw;
+      height: 56vh;
+      background: linear-gradient(to bottom, #6f4da5, transparent);
+      clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);
+      transform-origin: top;
+      transition: 3s;
+      animation: --spotlight 3s ease-in-out infinite;
+
+      &:nth-of-type(1) {
+          transform: rotate(var(--spotlight));
+      }
+
+      &:nth-of-type(2) {
+          transform: rotate(calc(var(--spotlight) * -1))
+      }
+  }
 }
 
-section:nth-of-type(1){
-    display: flex;
-    flex-direction: row;
-    overflow: auto;
+section:nth-of-type(1) {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
 }
 
 section:nth-of-type(2) {
-    position: absolute;
-    width: 500px;
-    background-color: aqua;
-    height: fit-content;
-    top: 0;
-    right: 0;
+  position: absolute;
+  width: 500px;
+  background-color: aqua;
+  height: fit-content;
+  top: 0;
+  right: 0;
 }
 
-.stagelights{
+.stagelights {
   height: 10vh;
   width: 100%;
   top: 0;
@@ -175,18 +230,18 @@ section:nth-of-type(2) {
   /* z-index: 7; */
 
 
-  & div:nth-of-type(1){
-    position: absolute;
-    width: 10rem;
-    height: 10rem;
-    background: red;
-    bottom: 10vh;
-    anchor-name: --spotlight-mid;
+  & div:nth-of-type(1) {
+      position: absolute;
+      width: 10rem;
+      height: 10rem;
+      background: red;
+      bottom: 10vh;
+      anchor-name: --spotlight-mid;
   }
 
-  
 
-  & li{
+
+  & li {
       /* width: 16vw; */
       height: 70vh;
       background: linear-gradient(to bottom, #6f4da5, transparent);
@@ -195,168 +250,271 @@ section:nth-of-type(2) {
       transition: 3s;
       /* animation: --spotlight 3s ease-in-out infinite; */
 
-      
+
       position: absolute;
       left: anchor(--spotlight-mid left);
       right: anchor(--spotlight-mid right);
       bottom: anchor(--spotlight-mid bottom);
 
-      &:nth-of-type(1){ transform: skewX(18deg);}
-      &:nth-of-type(2){ transform: skewX(-18deg);}
+      &:nth-of-type(1) {
+          transform: skewX(18deg);
+      }
+
+      &:nth-of-type(2) {
+          transform: skewX(-18deg);
+      }
   }
 
 
 }
 
 iframe {
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 1%;
-    width: 40vw;
-    height: 60vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0.5%;
+  width: 40vw;
+  height: 45vh;
 }
 
-input[type=radio]{
-    display: none;
+input[type=radio] {
+  display: none;
 }
 
 /* Custom Select */
 select {
-    appearance: none;
-    @supports (appearance: base-select) {
+  appearance: none;
+
+  @supports (appearance: base-select) {
+
       &,
       &::picker(select) {
-        appearance: base-select;
+          appearance: base-select;
       }
-    }
   }
-  
-  
-  select {
-    display: flex;
-    justify-content: space-between;
-    width: 12em;
-    padding: .5em;
-    margin: .5em;
-   
-    background-color: red;
-    border: 3px red;
-    border-radius: 5px;
-    color: white;
-    
-    &::picker(select) {
+}
+
+
+select {
+  display: flex;
+  justify-content: space-between;
+  width: 12em;
+  padding: .5em;
+  margin: .5em;
+
+  background-color: red;
+  border: 3px red;
+  border-radius: 5px;
+  color: white;
+
+  &::picker(select) {
       border-radius: 5px;
       margin-top: .2em;
       margin-bottom: .2em;
-    }
-    
-    &:open::picker-icon {
-       rotate: 180deg;
-       transform-origin: center;
-      }
-    
   }
-  
-  option {
-    padding: .25em;
-    border: 1px solid #E8E5E3;
-    
-    transition-duration: 0.2s;
-    transition-timing-function: ease-out;
-    
-    option:hover {
+
+  &:open::picker-icon {
+      rotate: 180deg;
+      transform-origin: center;
+  }
+
+}
+
+option {
+  padding: .25em;
+  border: 1px solid #E8E5E3;
+
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+
+  option:hover {
       background-color: plum;
-    }
-    
-    &:checked {
+  }
+
+  &:checked {
       background-color: red;
       color: white;
-    }
-    
-    &::checkmark {
-      display: none;
-    }
   }
-   
 
-  
-@keyframes --wave{
-  0%, 100%{
+  &::checkmark {
+      display: none;
+  }
+}
+
+
+
+@keyframes --wave {
+
+  0%,
+  100% {
       height: var(--height-gordijnen);
   }
 
-  50%{
+  50% {
       height: calc(var(--height-gordijnen) + 3vh);
   }
 }
 
 
-@keyframes --spotlight{
-  0%, 100%{
+@keyframes --spotlight {
+
+  0%,
+  100% {
       --spotlight: -20deg;
       transition: 3s;
   }
 
-  50%{
+  50% {
       --spotlight: 20deg;
       transition: 3s;
   }
 }
-@media screen and (min-width: 768px) {
-}
+
+@media screen and (min-width: 768px) {}
 
 /* Voor desktops */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) {}
+
+/* Card styling/Carousel */
+section>ul {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  anchor-name: --carousel;
+  width: 100vw;
+
+  > li {
+      container-type: scroll-state ;
+      scroll-snap-align: center;
+
+      > article {
+        background-color: green;
+          @container not scroll-state(snapped: x) {
+              interactivity: inert;
+              opacity: .25;
+          }
+      }
+  }
+
+
+
+  &::scroll-button(*) {
+      position: fixed;
+      font-family: arial;
+      width: 1em;
+      height: 1em;
+      font-size: 3em;
+      background: white;
+      border-radius: 2em;
+      border: none;
+
+  }
+
+  &::scroll-button(right) {
+      position-area: inline-start bottom;
+      content: '>' / 'Next';
+      right: 0;
+  }
+
+  &::scroll-button(left) {
+      position-area: inline-end bottom;
+      content: '<' / 'Previous';
+  }
+}
+
+
+section>ul>li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  box-shadow: 3px 4px 7px 4px grey;
+
+  background-color: lightgrey;
+  /*   border: 2px solid black; */
+  border-radius: 1em;
+
+  margin: 1em;
+  padding: .5em;
 
 }
+
+section>ul>li>article>img {
+  width: 7vw;
+  height: 7vw;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+section>ul>li>article>h3 {
+  visibility: hidden;
+}
+
+section>ul>li>p {
+  visibility: hidden;
+}
+
+section>ul>li:hover {
+  article {
+      opacity: 1;
+  }
+
+  h3 {
+      visibility: visible;
+  }
+
+  p {
+      visibility: visible;
+  }
+}
+
+section:nth-of-type(2)>article>img {
+  width: 15vw;
+}
+
+
+
 
 
 
 
 /* Lopend persoon */
-/* .lopend-persoon {
-  transform: translateX(-50%);
-} */
+
 
 .person {
   position: absolute;
-/*   margin: 0 auto;
-  left:0;
-  right:0; */
-  top: 10em;
-  width: var(--person-width);
-  height: 11em;
 
-  
-  /* border:4px solid #000; */
-  
-  transform-origin: center;
-  transform: translateX(-50%);
+  top: 10em;
+  width: 4em;
+  height: 11em;
+    border:1px solid #000;
+
   animation-name: WalkingUp, WalkingBack;
   animation-duration: 4s;
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-} 
+}
 
 @keyframes WalkingUp {
   0% {
-    transform: translateX(-100%)
+      transform: translateX(-100%)
   }
+
   100% {
-    transform: translateX(calc(50vw - 2em))
+      transform: translateX(calc(50vw - 2em))
   }
 }
 
 /* @keyframes WalkingBack {
-  0% {
-    transform: translateX(calc(50vw - 2em)) scaleX(-1)
-  }
-  100% {
-    transform: translateX(-100%) scaleX(-1)
-  }
-}  */ 
+0% {
+  transform: translateX((calc(50vw - 2em)) scaleX(-1)
+}
+100% {
+  transform: translateX(-100%) scaleX(-1)
+}
+}  */
 
 /*========== LEFT ARM ==========*/
 
@@ -366,26 +524,34 @@ select {
   left: 0;
   right: 0;
   top: 55px;
-/*   border: 1px solid #000; */
+  /*   border: 1px solid #000; */
   width: var(--arm-width);
   height: var(--arm-length);
-  transform-origin:25px 10px;
-  transform:translateX(-20px) rotate(30deg);
+  transform-origin: 25px 10px;
+  transform: translateX(-20px) rotate(30deg);
   animation: transformLeftArm var(--walk-speed) var(--iteration-count) normal ease-in-out forwards;
 }
-  
-  @keyframes transformLeftArm{
-    0%{transform:translateX(-15px) rotate(15deg);}
-    50%{transform:translateX(15px) rotate(-25deg);}
-    100%{transform:translateX(-15px) rotate(15deg);}
+
+@keyframes transformLeftArm {
+  0% {
+      transform: translateX(-15px) rotate(15deg);
   }
+
+  50% {
+      transform: translateX(15px) rotate(-25deg);
+  }
+
+  100% {
+      transform: translateX(-15px) rotate(15deg);
+  }
+}
 
 .upperLeftArm {
   position: absolute;
   width: var(--arm-width);
   height: var(--arm-length);
   background: var(--suit-color);
-  border: 1px solid rgb(234, 90, 234);
+  /*   border: 1px solid black; */
 }
 
 .lowerLeftArm {
@@ -394,22 +560,30 @@ select {
   width: var(--arm-width);
   height: var(--arm-length);
   background: var(--suit-color);
-  border: 1px solid rgb(234, 90, 234);
-  
-  transform-origin:00px 5px;
-  transform:rotate(-15deg);
-  animation: transformlowerLeftArm var(--walk-speed) var(--iteration-count) normal ease-in-out forwards; 
+  /*   border: 1px solid black; */
+
+  transform-origin: 00px 5px;
+  transform: rotate(-15deg);
+  animation: transformlowerLeftArm var(--walk-speed) var(--iteration-count) normal ease-in-out forwards;
 }
 
- @keyframes transformlowerLeftArm{
-    0%{transform:rotate(-5deg);}
-    50%{transform:rotate(-80deg);}
-    100%{transform:rotate(-5deg);}
+@keyframes transformlowerLeftArm {
+  0% {
+      transform: rotate(-5deg);
   }
 
-.leftHand{
+  50% {
+      transform: rotate(-80deg);
+  }
+
+  100% {
+      transform: rotate(-5deg);
+  }
+}
+
+.leftHand {
   position: absolute;
-  top:18px;
+  top: 18px;
   width: var(--hands);
   height: var(--hands);
   background: var(--skin-color);
@@ -424,26 +598,34 @@ select {
   left: 0;
   right: 0;
   top: 100px;
-/*   border: 1px solid #000; */
+  /*   border: 1px solid #000; */
   width: var(--leg-width);
   height: 120px;
-  transform-origin:5px 5px;
-  transform:translateX(10px) rotate(-45deg);
+  transform-origin: 5px 5px;
+  transform: translateX(10px) rotate(-45deg);
   animation: transformleftLeg var(--walk-speed) var(--iteration-count) normal ease-in-out forwards;
 }
-  
- @keyframes transformleftLeg{
-  0%{transform:translateX(10px) rotate(-5deg);}
-  50%{transform:translateX(-10px) rotate(45deg);}
-  100%{transform:translateX(10px) rotate(-5deg);}
+
+@keyframes transformleftLeg {
+  0% {
+      transform: translateX(10px) rotate(-5deg);
   }
+
+  50% {
+      transform: translateX(-10px) rotate(45deg);
+  }
+
+  100% {
+      transform: translateX(10px) rotate(-5deg);
+  }
+}
 
 .upperLeftLeg {
   position: absolute;
   width: var(--leg-width);
   height: var(--leg-length);
-  background: darkgray;
-/*   border: 1px solid black; */
+  background: var(--broek);
+  /*   border: 1px solid black; */
 }
 
 .lowerLeftLeg {
@@ -451,29 +633,43 @@ select {
   top: 20px;
   width: var(--leg-width);
   height: var(--leg-length);
-  background: darkgray;
-/*   border: 1px solid black; */
-  transform-origin:15px 5px;
-  transform:rotate(0deg);
-  animation: transformlowerLeftLeg var(--walk-speed) var(--iteration-count) normal linear forwards; 
+  background: var(--broek);
+  /*   border: 1px solid black; */
+  transform-origin: 15px 5px;
+  transform: rotate(0deg);
+  animation: transformlowerLeftLeg var(--walk-speed) var(--iteration-count) normal linear forwards;
 }
 
- @keyframes transformlowerLeftLeg{
-    0%{transform:rotate(0deg);}
-    25%{transform:rotate(0deg);}
-    50%{transform:rotate(15deg);}
-    75%{transform:rotate(90deg);}
-    100%{transform:rotate(0deg);}
+@keyframes transformlowerLeftLeg {
+  0% {
+      transform: rotate(0deg);
   }
 
+  25% {
+      transform: rotate(0deg);
+  }
 
-.leftFoot{
+  50% {
+      transform: rotate(15deg);
+  }
+
+  75% {
+      transform: rotate(90deg);
+  }
+
+  100% {
+      transform: rotate(0deg);
+  }
+}
+
+
+.leftFoot {
   position: absolute;
-  top:20px;
+  top: 20px;
   width: var(--feet-width);
   height: var(--feet-length);
   background: var(--shoe-color);
-/*   border: 1px solid black; */
+  /*   border: 1px solid black; */
 }
 
 /*========== TORSO ==========*/
@@ -489,51 +685,67 @@ select {
   left: 0;
   right: 0;
   top: 55px;
-/*   border: 1px solid #000; */
+  /*   border: 1px solid #000; */
   width: var(--arm-width);
-  height: var(--arm-length); 
-  transform-origin:15px 1px;
-  transform:translateX(20px) rotate(-45deg);
+  height: var(--arm-length);
+  transform-origin: 15px 1px;
+  transform: translateX(20px) rotate(-45deg);
   animation: transformRightArm var(--walk-speed) var(--iteration-count) normal ease-in-out forwards;
 }
-  
-  @keyframes transformRightArm{
-    0%{transform:translateX(10px) rotate(-5deg);}
-    50%{transform:translateX(-10px) rotate(30deg);}
-    100%{transform:translateX(10px) rotate(-5deg);}
+
+@keyframes transformRightArm {
+  0% {
+      transform: translateX(10px) rotate(-5deg);
   }
+
+  50% {
+      transform: translateX(-10px) rotate(30deg);
+  }
+
+  100% {
+      transform: translateX(10px) rotate(-5deg);
+  }
+}
 
 .upperRightArm {
   position: absolute;
   width: var(--arm-width);
-  height: var(--arm-length) ;
+  height: var(--arm-length);
   background: var(--suit-color);
-  border: 1px solid rgb(234, 90, 234);
+  /*   border: 1px solid black; */
 }
 
 .lowerRightArm {
   position: absolute;
-  top: 5px;
+  top: 15px;
   width: var(--arm-width);
   height: var(--arm-length);
   background: var(--suit-color);
-
-  transform-origin:25px 10px;
-  transform:rotate(-90deg);
-  animation: transformlowerRightArm var(--walk-speed) var(--iteration-count) normal ease-in-out forwards; 
+  /*   border: 1px solid black; */
+  transform-origin: 25px 10px;
+  transform: rotate(-90deg);
+  animation: transformlowerRightArm var(--walk-speed) var(--iteration-count) normal ease-in-out forwards;
 }
-  
-  @keyframes transformlowerRightArm{
-    0%{transform:rotate(-60deg);}
-    50%{transform:rotate(-15deg);}
-    100%{transform:rotate(-60deg);}
+
+@keyframes transformlowerRightArm {
+  0% {
+      transform: rotate(-60deg);
   }
 
+  50% {
+      transform: rotate(-15deg);
+  }
+
+  100% {
+      transform: rotate(-60deg);
+  }
+}
 
 
-.rightHand{
+
+.rightHand {
   position: absolute;
-  top:15px;
+  top: 15px;
   width: var(--hands);
   height: var(--hands);
   background: #FFD9AB;
@@ -548,27 +760,35 @@ select {
   left: 0;
   right: 0;
   top: 100px;
-/*   border: 1px solid #000; */
+  /*   border: 1px solid #000; */
   width: var(--arm-width);
   height: var(--arm-length);
-  transform-origin:5px 5px;
-  transform:translateX(-25px) rotate(15deg);
+  transform-origin: 5px 5px;
+  transform: translateX(-25px) rotate(15deg);
   animation: transformRightLeg var(--walk-speed) var(--iteration-count) normal ease-in-out forwards;
 }
-  
-  @keyframes transformRightLeg{
-  0%{transform:translateX(-10px) rotate(5deg);}
-  50%{transform:translateX(10px) rotate(-25deg);}
-  100%{transform:translateX(-10px) rotate(5deg);}
+
+@keyframes transformRightLeg {
+  0% {
+      transform: translateX(-10px) rotate(5deg);
   }
+
+  50% {
+      transform: translateX(10px) rotate(-25deg);
+  }
+
+  100% {
+      transform: translateX(-10px) rotate(5deg);
+  }
+}
 
 
 .upperRightLeg {
   position: absolute;
   width: var(--leg-width);
   height: var(--leg-length);
-  background: darkgray;
-/*   border: 1px solid black; */
+  background: var(--broek);
+  /*   border: 1px solid black; */
 }
 
 .lowerRightLeg {
@@ -576,30 +796,44 @@ select {
   top: 20px;
   width: var(--leg-width);
   height: var(--leg-length);
-  background: darkgray;
-/*   border: 1px solid black; */
-  transform-origin:5px 5px;
-  transform:rotate(15deg);
-  animation: transformlowerRightLeg var(--walk-speed) var(--iteration-count) normal linear forwards; 
+  background: var(--broek);
+  /*   border: 1px solid black; */
+  transform-origin: 5px 5px;
+  transform: rotate(15deg);
+  animation: transformlowerRightLeg var(--walk-speed) var(--iteration-count) normal linear forwards;
 }
 
-  @keyframes transformlowerRightLeg{
-    0%{transform:rotate(15deg);}
-    25%{transform:rotate(90deg);}
-    50%{transform:rotate(0deg);}
-    75%{transform:rotate(0deg);}
-    100%{transform:rotate(15deg);}
+@keyframes transformlowerRightLeg {
+  0% {
+      transform: rotate(15deg);
   }
 
+  25% {
+      transform: rotate(90deg);
+  }
 
-.rightFoot{
+  50% {
+      transform: rotate(0deg);
+  }
+
+  75% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(15deg);
+  }
+}
+
+
+.rightFoot {
   position: absolute;
-  top:20px;
+  top: 20px;
   width: var(--feet-width);
   height: var(--feet-length);
-  background:  var(--shoe-color);
-  
+  background: var(--shoe-color);
 }
+
 .torso {
   position: absolute;
   margin: 0 auto;
@@ -610,15 +844,23 @@ select {
   height: var(--torso-length);
   border-radius: 40% 40% 10% 10% / 100% 100% 0% 0%;
   background: var(--suit-color);
-/*   border: 1px solid black; */
-  animation: transformTorso var(--walk-speed) var(--iteration-count) normal ease-in-out forwards; 
+  /*   border: 1px solid black; */
+  animation: transformTorso var(--walk-speed) var(--iteration-count) normal ease-in-out forwards;
 }
 
- @keyframes transformTorso{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(5px);}
-    100%{transform:translateY(0);}
+@keyframes transformTorso {
+  0% {
+      transform: translateY(0);
   }
+
+  50% {
+      transform: translateY(5px);
+  }
+
+  100% {
+      transform: translateY(0);
+  }
+}
 
 
 /*========== HEAD ==========*/
@@ -633,12 +875,20 @@ select {
   height: var(--head);
   border-radius: 100%;
   background: #FFD9AB;
-/* /*   border: 1px solid black; */ 
-  animation: transformHead var(--walk-speed) var(--iteration-count) normal ease-in-out forwards; 
+  /* /*   border: 1px solid black; */
+  animation: transformHead var(--walk-speed) var(--iteration-count) normal ease-in-out forwards;
 }
 
-  @keyframes transformHead{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(10px);}
-    100%{transform:translateY(0);}
+@keyframes transformHead {
+  0% {
+      transform: translateY(0);
   }
+
+  50% {
+      transform: translateY(10px);
+  }
+
+  100% {
+      transform: translateY(0);
+  }
+}
