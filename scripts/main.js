@@ -9,7 +9,20 @@ const iFrame = document.querySelector('iframe');
 
 // Get all stage elements
 const gordijnenL = document.querySelector('.gordijnen');
-const gordijnenR = document.querySelector('.right')
+const gordijnenR = document.querySelector('.right');
+
+// Get all body parts
+const personDIV = document.querySelector('.person');
+const personHead = document.querySelector('.head');
+const personTorso = document.querySelector('.torso');
+const personLRLeg = document.querySelector('.lowerRightLeg');
+const personRLeg = document.querySelector('.rightLeg');
+const personLRArm = document.querySelector('.lowerRightArm');
+const personRArm = document.querySelector('.rightArm');
+const personLLLeg = document.querySelector('.lowerLeftLeg');
+const personLLeg = document.querySelector('.leftLeg');
+const personLLArm = document.querySelector('.lowerLeftArm');
+const personLArm = document.querySelector('.leftArm');
 
 var gordijnenOpen = false;
 
@@ -96,22 +109,59 @@ selection.addEventListener('change', function getPersonSelection() {
 
             // Add info to template and repeat for everyone
             personHTML =
-                `<li id="${personID}" onclick="getID(this.id)">
-                <article>
-                <img src="https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
-                <h3>${personName}</h3>
-            </article>
-            </li>`;
+                `<li id="${personID}">
+            <article>
+            <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
+            <h3>${personName}</h3>
+        </article>
+        </li>`;
             list.insertAdjacentHTML('beforeend', personHTML);
         });
+
+        const allListItems = document.querySelectorAll('.scroll-container li')
+
+        allListItems.forEach(listItem => {
+            // gebruik voortaan een button, voor nu ok
+            listItem.addEventListener('click', getID)
+        })
     });
 });
 
+function resetAnimation() {
+    // Disable body parts
+    personDIV.style.animation = "none";
+    personHead.style.animation = "none";
+    personTorso.style.animation = "none";
+    personLRLeg.style.animation = "none";
+    personRLeg.style.animation = "none";
+    personLRArm.style.animation = "none";
+    personRArm.style.animation = "none";
+    personLLLeg.style.animation = "none";
+    personLLeg.style.animation = "none";
+    personLLArm.style.animation = "none";
+    personLArm.style.animation = "none";
 
+    setTimeout(() => {
+
+        personDIV.style.animation = "WalkingUp 4s 1 normal linear forwards"
+        personHead.style.animation = "transformHead var(--walk-speed) var(--iteration-count) normal ease-in-out forwards"
+        personTorso.style.animation = "transformTorso var(--walk-speed) var(--iteration-count) normal ease-in-out forwards"
+        personLRLeg.style.animation = "transformlowerRightLeg var(--walk-speed) var(--iteration-count) normal linear forwards"
+        personRLeg.style.animation = "transformRightLeg var(--walk-speed) var(--iteration-count) normal ease-in-out forwards"
+        personLRArm.style.animation = "transformlowerRightArm var(--walk-speed) var(--iteration-count) normal ease-in-out forwards"
+        personRArm.style.animation = "transformRightArm var(--walk-speed) var(--iteration-count) normal ease-in-out forwards"
+        personLLLeg.style.animation = "transformlowerLeftLeg var(--walk-speed) var(--iteration-count) normal linear"
+        personLLeg.style.animation = "transformleftLeg var(--walk-speed) var(--iteration-count) normal ease-in-out forwards"
+        personLLArm.style.animation = "transformlowerLeftArm var(--walk-speed) var(--iteration-count) normal ease-in-out forwards"
+        personLArm.style.animation = "transformLeftArm var(--walk-speed) var(--iteration-count) normal ease-in-out forwards"
+    }, 10)
+}
 
 // Get the clicked on persons ID
 function getID(event) {
     console.log(event.target.id);
+
+
     const personIDClicked = event.target.id
     if (gordijnenOpen == false) {
         gordijnenL.style.animation = "gordijnenL 6s ease-in-out";
@@ -120,33 +170,38 @@ function getID(event) {
         gordijnenR.style.animationFillMode = "forwards";
 
         gordijnenOpen = true;
-    } else if (gordijnenOpen == true) {
+    } else if (gordijnenL.style.animationName == "gordijnenHeropenL") {
+        gordijnenL.style.animation = "gordijnenHeropenL2 6s ease-in-out";
+        gordijnenL.style.animationFillMode = "forwards";
 
+        gordijnenR.style.animation = "gordijnenHeropenR2 6s ease-in-out";
+        gordijnenR.style.animationFillMode = "forwards";
+    } else {
+        gordijnenL.style.animation = "gordijnenHeropenL 6s ease-in-out";
+        gordijnenL.style.animationFillMode = "forwards";
 
-        gordijnenL.style.animation = "none";
-        gordijnenR.style.animation = "none";
-        setTimeout(() => {
-            gordijnenL.style.animation = "gordijnenHeropenL 6s ease-in-out";
-            gordijnenL.style.animationFillMode = "forwards";
-
-            gordijnenR.style.animation = "gordijnenHeropenR 6s ease-in-out";
-            gordijnenR.style.animationFillMode = "forwards";
-        }, 10);
+        gordijnenR.style.animation = "gordijnenHeropenR 6s ease-in-out";
+        gordijnenR.style.animationFillMode = "forwards";
     }
+
 
     const scrollContainer = document.querySelector('.scroll-container ul')
     console.log(event.target.offsetLeft)
-    scrollContainer.scrollTo({left: (event.target.offsetLeft - (window.innerWidth/2)), top: 0, behavior: 'smooth'
+    scrollContainer.scrollTo({
+        left: (event.target.offsetLeft - (window.innerWidth / 2)), top: 0, behavior: 'smooth'
     })
-
+    
     getData(url).then(data => {
-
+        
         const persons = data.data;
         console.log(persons);
-
+        
         persons.forEach(persons => {
-
+            
             setTimeout(() => {
+                
+                resetAnimation();
+
                 if (persons.id == personIDClicked) {
                     let personID = persons.id;
                     let personName = persons.name;
@@ -177,7 +232,7 @@ function getID(event) {
                         // <p>${personTagline}</p>
                         // </article>`;
 
-            `   <article class="personsTemplate" id="${personID}" onclick="getID(this.id)">
+                        `   <article class="personsTemplate" id="${personID}" onclick="getID(this.id)">
                                 <ul>
                                     <li><img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}"></li>
                                     <li>
@@ -198,7 +253,7 @@ function getID(event) {
                 } else {
                     console.log("Werkt niet");
                 }
-            }, 3000);
+            }, 2990);
         })
     });
 }

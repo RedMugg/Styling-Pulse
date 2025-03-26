@@ -7,7 +7,7 @@
 
 
 :root {
-    --height-gordijnen: 50vh;
+    --height-gordijnen: 57vh;
     --spotlights: 5deg;
 
     /* Variables voor persoon */
@@ -107,6 +107,29 @@ header {
 }
 
 @keyframes gordijnenHeropenR {
+
+    0%,
+    100% {
+        transform: translateX(50vw) rotate(-3deg) translateY(-2vh);
+    }
+
+    50% {
+        transform: translateX(0) rotate(0) translateY(0vh);
+    }
+}
+@keyframes gordijnenHeropenL2 {
+
+    0%,
+    100% {
+        transform: translateX(-50vw) rotate(3deg) translateY(-2vh);
+    }
+
+    50% {
+        transform: translateX(0) rotate(0) translateY(0vh);
+    }
+}
+
+@keyframes gordijnenHeropenR2 {
 
     0%,
     100% {
@@ -541,7 +564,6 @@ section:nth-of-type(2)>article>img {
   bottom: 0;
   width: 4em;
   height: 11em;
-  border:1px solid #000;
 
     animation-name: WalkingUp, WalkingBack;
     animation-duration: 4s;
@@ -690,7 +712,7 @@ section:nth-of-type(2)>article>img {
     /*   border: 1px solid black; */
     transform-origin: 15px 5px;
     transform: rotate(0deg);
-    animation: transformlowerLeftLeg var(--walk-speed) var(--iteration-count) normal linear forwards;
+    animation: transformlowerLeftLeg var(--walk-speed) var(--iteration-count) normal linear;
 }
 
 @keyframes transformlowerLeftLeg {
