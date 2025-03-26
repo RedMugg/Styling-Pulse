@@ -153,7 +153,7 @@ header {
 
 .podium {
   position: relative;
-  height: 14vh;
+  height: 10vh;
   width: 100%;
 
   &::after {
@@ -169,7 +169,7 @@ header {
       position: absolute;
       bottom: 3vh;
       width: 100%;
-      height: 40vh;
+      height: 17vh;
       transform: perspective(421px) rotateX(72deg);
       background: repeating-linear-gradient(to right, black 0 1%, #a35320 0 8vw);
   }
@@ -213,7 +213,8 @@ section:nth-of-type(1) {
 section:nth-of-type(2) {
   position: absolute;
   width: 100%;
-  top: 7vh;
+  top: 0;
+  height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;  
@@ -474,8 +475,8 @@ section:nth-of-type(2)>article>img {
 .lopend-persoon {
   position: absolute;
   top: 0;
-  height: 50vh;
-
+  height: 60vh;
+  pointer-events: none;
   width: 100%;
 }
 
@@ -925,13 +926,30 @@ section:nth-of-type(2)>article>img {
     display: grid;
     list-style: none;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
     padding: 1rem;
+    grid-template-areas: "b1 b2" "b3 b3" ;
     & li:first-of-type{
         font-weight: bold;
+        grid-area: b1;
     }
     & li:nth-of-type(2){
       display: flex;
       flex-direction: column;
+      grid-area: b2;
+    }
+    & div{
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 1rem;
+      grid-area: b3;
+
+      & a >img{
+        width: clamp(2rem, 5vw, 2.5rem);
+        height: clamp(2rem, 5vw, 2.5rem);
+      }
     }
   }
 
