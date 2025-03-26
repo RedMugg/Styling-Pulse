@@ -203,7 +203,7 @@ function getID(event) {
             }, 3000);
         })
     });
-}
+}}
 
 // Basic function to retrieve data from the desired url
 async function getData(URL) {
