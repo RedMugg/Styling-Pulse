@@ -33,16 +33,19 @@ function getAllPersons() {
                 <h3>${personName}</h3>
             </article>
             </li>`;
-      list.insertAdjacentHTML("beforeend", personHTML);
+            list.insertAdjacentHTML('beforeend', personHTML);
+        });
+
+        const allListItems = document.querySelectorAll('.scroll-container li')
+        // we halen alle list items op en loopen er doorheen
+        allListItems.forEach(listItem => {
+            // gebruik voortaan een button, voor nu ok
+            listItem.addEventListener('click', getID)
+        })
+
     });
-    const allListItems = document.querySelectorAll(".scroll-container li");
-    // we halen alle list items op en loopen er doorheen
-    allListItems.forEach((listItem) => {
-      // gebruik voortaan een button, voor nu ok
-      listItem.addEventListener("click", getID);
-    });
-  });
 }
+
 
 // Filter the selection of women and refresh who is shown
 selection.addEventListener("change", function getPersonSelection() {
@@ -112,30 +115,37 @@ function getID(event) {
     gordijnenL.style.animationFillMode = "forwards";
     gordijnenR.style.animation = "gordijnenR 6s ease-in-out";
     gordijnenR.style.animationFillMode = "forwards";
+    console.log(event.target.id);
+    const personIDClicked = event.target.id
+    if (gordijnenOpen == false) {
+        gordijnenL.style.animation = "gordijnenL 6s ease-in-out";
+        gordijnenL.style.animationFillMode = "forwards";
+        gordijnenR.style.animation = "gordijnenR 6s ease-in-out";
+        gordijnenR.style.animationFillMode = "forwards";
 
     gordijnenOpen = true;
-  } else if (gordijnenOpen == true) {
-    gordijnenL.style.animation = "none";
-    gordijnenR.style.animation = "none";
-    setTimeout(() => {
-      gordijnenL.style.animation = "gordijnenHeropenL 6s ease-in-out";
-      gordijnenL.style.animationFillMode = "forwards";
+  } else if (gordijnenOpen == true) {        
 
-      gordijnenR.style.animation = "gordijnenHeropenR 6s ease-in-out";
-      gordijnenR.style.animationFillMode = "forwards";
-    }, 10);
-  }
-  const scrollContainer = document.querySelector(".scroll-container ul");
-  console.log(event.target.offsetLeft);
-  scrollContainer.scrollTo({
-    left: event.target.offsetLeft,
-    top: 0,
-    behavior: "smooth",
-  });
+        gordijnenL.style.animation = "none";
+        gordijnenR.style.animation = "none";
+        setTimeout(() => {
+            gordijnenL.style.animation = "gordijnenHeropenL 6s ease-in-out";
+            gordijnenL.style.animationFillMode = "forwards";
 
-  getData(url).then((data) => {
-    const persons = data.data;
-    console.log(persons);
+            gordijnenR.style.animation = "gordijnenHeropenR 6s ease-in-out";
+            gordijnenR.style.animationFillMode = "forwards";
+        }, 10);
+    }
+
+    const scrollContainer = document.querySelector('.scroll-container ul')
+    console.log(event.target.offsetLeft)
+    scrollContainer.scrollTo({left: (event.target.offsetLeft - (window.innerWidth/2)), top: 0, behavior: 'smooth'
+    })
+
+    getData(url).then(data => {
+
+        const persons = data.data;
+        console.log(persons);
 
     persons.forEach((persons) => {
       setTimeout(() => {
@@ -186,13 +196,13 @@ function getID(event) {
                                 <iframe src="${personFullPenLink}"></iframe>
                             </article>`;
 
-          personDetail.insertAdjacentHTML("beforeend", personHTML);
-        } else {
-          console.log("Werkt niet");
-        }
-      }, 2000);
+                    personDetail.insertAdjacentHTML('beforeend', personHTML);
+                } else {
+                    console.log("Werkt niet");
+                }
+            }, 3000);
+        })
     });
-  });
 }
 
 // Basic function to retrieve data from the desired url
