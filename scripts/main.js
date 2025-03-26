@@ -39,6 +39,7 @@ function getAllPersons() {
             </li>`;
             list.insertAdjacentHTML('beforeend', personHTML);
         });
+
         const allListItems = document.querySelectorAll('.scroll-container li')
         // we halen alle list items op en loopen er doorheen
         allListItems.forEach(listItem => {
@@ -110,6 +111,7 @@ selection.addEventListener('change', function getPersonSelection() {
 
 // Get the clicked on persons ID
 function getID(event) {
+    console.log(event.target.id);
     const personIDClicked = event.target.id
     if (gordijnenOpen == false) {
         gordijnenL.style.animation = "gordijnenL 6s ease-in-out";
@@ -120,6 +122,7 @@ function getID(event) {
         gordijnenOpen = true;
     } else if (gordijnenOpen == true) {
 
+        
         gordijnenL.style.animation = "none";
         gordijnenR.style.animation = "none";
         setTimeout(() => {
@@ -130,9 +133,10 @@ function getID(event) {
             gordijnenR.style.animationFillMode = "forwards";
         }, 10);
     }
+
     const scrollContainer = document.querySelector('.scroll-container ul')
     console.log(event.target.offsetLeft)
-    scrollContainer.scrollTo({left: event.target.offsetLeft, top: 0, behavior: 'smooth'
+    scrollContainer.scrollTo({left: (event.target.offsetLeft - (window.innerWidth/2)), top: 0, behavior: 'smooth'
     })
 
     getData(url).then(data => {
@@ -171,7 +175,7 @@ function getID(event) {
                 } else {
                     console.log("Werkt niet");
                 }
-            }, 2000);
+            }, 3000);
         })
     });
 }
