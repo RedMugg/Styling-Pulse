@@ -480,11 +480,23 @@ section:nth-of-type(2)>article>img {
 
 /* Lopend persoon */
 
+.lopend-persoon {
+  position: absolute;
+  top: 0;
+  height: 50vh;
+
+  width: 100%;
+}
+
+.person-container {
+  position: absolute;
+    bottom: 0;
+}
 
 .person {
   position: absolute;
 
-  top: 10em;
+  bottom: 0;
   width: 4em;
   height: 11em;
     border:1px solid #000;
