@@ -31,7 +31,7 @@ function getAllPersons() {
 
             // Add info to template and repeat for everyone
             personHTML =
-                `<li id="${personID}" onclick="getID(this.id)">
+                `<li id="${personID}">
                 <article>
                 <img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}">
                 <h3>${personName}</h3>
@@ -39,6 +39,12 @@ function getAllPersons() {
             </li>`;
             list.insertAdjacentHTML('beforeend', personHTML);
         });
+        const allListItems = document.querySelectorAll('.scroll-container li')
+        // we halen alle list items op en loopen er doorheen
+        allListItems.forEach(listItem => {
+            // gebruik voortaan een button, voor nu ok
+            listItem.addEventListener('click', getID)
+        })
 
     });
 }
@@ -100,8 +106,11 @@ selection.addEventListener('change', function getPersonSelection() {
     });
 });
 
+
+
 // Get the clicked on persons ID
-function getID(personIDClicked) {
+function getID(event) {
+    const personIDClicked = event.target.id
     if (gordijnenOpen == false) {
         gordijnenL.style.animation = "gordijnenL 6s ease-in-out";
         gordijnenL.style.animationFillMode = "forwards";
@@ -121,8 +130,11 @@ function getID(personIDClicked) {
             gordijnenR.style.animationFillMode = "forwards";
         }, 10);
     }
-
-    console.log(personIDClicked);
+    const scrollContainer = document.querySelector('.scroll-container')
+    console.log(event.target.offsetLeft)
+    console.log(scrollContainer)
+    scrollContainer.scrollTo({left: event.target.offsetLeft, top: 0, behavior: 'smooth'
+    })
 
     getData(url).then(data => {
 
