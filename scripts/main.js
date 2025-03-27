@@ -1,7 +1,7 @@
 
 const url = "https://fdnd.directus.app/items/women_in_tech";
 const list = document.querySelector('section:nth-of-type(1)>ul');
-const personDetail = document.querySelector('section:nth-of-type(2)');
+const personDetail = document.querySelector('.personDetail');
 
 
 const selection = document.querySelector('select');
@@ -218,7 +218,7 @@ function getID(event) {
                     let personPen = persons.codepen_demo;
                     let personFullPenLink = personCodepen + "/embed/" + personPen;
 
-                    const element = document.querySelector("section:nth-of-type(2)");
+                    const element = document.querySelector(".personDetail");
                     while (element.firstChild) {
                         element.removeChild(element.firstChild);
                     }
@@ -237,14 +237,30 @@ function getID(event) {
                                     <li><img src=" https://fdnd.directus.app/assets/${personImgSrc}" alt="${personName}"></li>
                                     <li>
                                         <h1>${personName}</h1>
-                                        <p>${personTagline}</p>
+                                        <p>"${personTagline}"</p>
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li><p>Short_name:</p><p>Period:</p><p>Country:</p><p>Work:</p></li>
-                                    <li><p>${short_name}</p><p>${period}</p><p>${country}</p><p>${work}</p></li>
-                                    <div><a href="${website}"><img src="../img/website.png" alt="website"></a><a href="${github}"><img src="../img/github.png" alt="github">
-                                    </a><a href="${personCodepen}"><img src="../img/codepen.png" alt="codepen"></a></div>
+                                    <li>
+                                        <p>Short name:</p>
+                                        <p>Period:</p>
+                                        <p>Country:</p>
+                                        <p>Work:</p>
+                                    </li>
+                                    <li>
+                                        <p>${short_name}</p>
+                                        <p>${period}</p>
+                                        <p>${country}</p>
+                                        <p>${work}</p>
+                                    </li>
+                                    <li>
+                                        <p>Visit me at:</p>
+                                        <div>
+                                        <a href="${website}"><img src="../img/website.png" alt="website"></a>
+                                        <a href="${github}"><img src="../img/github.png" alt="github"></a>
+                                        <a href="${personCodepen}"><img src="../img/codepen.png" alt="codepen"></a>
+                                        </div>
+                                    </li>
                                 </ul>
                                 <iframe src="${personFullPenLink}"></iframe>
                             </article>`;

@@ -1,5 +1,6 @@
 body {
     overflow: clip;
+    background: black;
   }
   
   * {
@@ -14,7 +15,7 @@ body {
   
   :root {
       --height-gordijnen: 58vh;
-      --spotlights: 5deg;
+      --spotlights: 40deg;
   
       /* Variables voor persoon */
       --arm-width: .75em;
@@ -44,19 +45,25 @@ body {
       overflow: hidden;
   
       &:hover .topgordijn {
-          transform: translateY(-5vh);
+          transform: translateY(-3vh);
           transition: 3s;
       }
   
       &:hover .stagelights li:nth-of-type(1) {
-          transform: rotate(calc(var(--spotlights) * -1));
+          transform: rotate(calc(var(--spotlights) * -1)) skewX(0);
+          transform-origin: top;
+          opacity: 0;
           transition: 3s;
       }
   
       &:hover .stagelights li:nth-of-type(2) {
-          transform: rotate(var(--spotlights));
+          transform: rotate(var(--spotlights)) skewX(0);
+          transform-origin: top;
+          opacity: 0;
           transition: 3s;
       }
+
+      &:hover .stagelights li:nth-of-type(3), &:hover .stagelights li:nth-of-type(4){ opacity: .3;}
   }
   
   @keyframes gordijnenL {
@@ -134,7 +141,7 @@ body {
   .topgordijn {
       position: absolute;
       width: 100%;
-      height: 10vh;
+      height: 7vh;
       display: flex;
       list-style: none;
       transition: 3s;
@@ -191,6 +198,7 @@ body {
     justify-content: space-evenly;
     display: flex;
     list-style: none;
+    position: absolute;
     /* z-index: 7; */
   
   
@@ -198,7 +206,7 @@ body {
         position: absolute;
         width: 10rem;
         height: 10rem;
-        background: red;
+        /* background: red; */
         bottom: 10vh;
         anchor-name: --spotlight-mid;
     }
@@ -209,23 +217,48 @@ body {
         /* width: 16vw; */
         height: 70vh;
         background: linear-gradient(to bottom, #6f4da5, transparent);
-        clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);
-        transform-origin: bottom;
+        opacity: .7;
+        clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);   
+        pointer-events: none;
         transition: 3s;
         /* animation: --spotlight 3s ease-in-out infinite; */
-  
-  
+        z-index: 5;
         position: absolute;
-        left: anchor(--spotlight-mid left);
-        right: anchor(--spotlight-mid right);
-        bottom: anchor(--spotlight-mid bottom);
+
   
         &:nth-of-type(1) {
-            transform: skewX(18deg);
+            transform: skewX(14deg);
+            left: anchor(--spotlight-mid left);
+            right: anchor(--spotlight-mid right);
+            bottom: anchor(--spotlight-mid bottom);
+            transform-origin: bottom;
         }
   
         &:nth-of-type(2) {
-            transform: skewX(-18deg);
+            transform: skewX(-14deg);
+            left: anchor(--spotlight-mid left);
+            right: anchor(--spotlight-mid right);
+            bottom: anchor(--spotlight-mid bottom);
+            transform-origin: bottom;
+        }
+
+        &:nth-of-type(3) {
+          height: 55vh;
+          width: 12vw;
+          left: 5%;
+          animation: --spotlight-rotation 3s ease-in-out infinite alternate;
+          transform-origin: top;
+          transform: rotate(var(--spotlight));
+        }
+
+        &:nth-of-type(4) {
+            height: 55vh;
+            width: 12vw;
+            right: 5%;
+            animation: --spotlight-rotation 3s ease-in-out infinite alternate 2s;
+            
+            transform-origin: top;  
+            transform: rotate(var(--spotlight));
         }
     }
   
@@ -241,7 +274,7 @@ body {
   .personDetail {
   position: absolute;
   width: 100%;
-  height: 60vh;
+  height: 52vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -350,25 +383,25 @@ body {
   }
   
   
-  @keyframes --spotlight {
+  @keyframes --spotlight-rotation {
   
-      0%,
-      100% {
-          --spotlight: -20deg;
-          transition: 3s;
+      0%
+       {
+          --spotlight: -7deg;
       }
   
-      50% {
-          --spotlight: 20deg;
-          transition: 3s;
+      100% {
+          --spotlight: 7deg;
       }
   }
+
+  @property --spotlight {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: -7deg;
+  }
   
-  @media screen and (min-width: 768px) {}
-  
-  /* Voor desktops */
-  @media screen and (min-width: 1024px) {}
-  
+
   /* ///////////////////
   Card styling/Carousel 
   ////////////////////*/
@@ -519,6 +552,7 @@ body {
   .person-container {
     position: absolute;
       bottom: 0;
+      transform: scale(1);
   }
   
   .person {
@@ -938,24 +972,62 @@ body {
     grid-template-rows: auto 1fr;
     grid-template-areas: "a1 a3" "a2 a3";
     max-width: max-content;
-    background: gray;
+    background: linear-gradient(211deg, #9796f0 8%,#FFE7F1 100%);
     padding: 1rem;
     height: max-content;
     max-width: 60rem;
+    position: relative;
+    box-shadow: 0 0 18px 3px #9796f0, 0 0 0 8px #ffffff, inset 0 0 5px 0 ;
+    border-radius: .5rem;
+
+    & p:hover {
+      background: #9796f0;
+      width: fit-content;
+      transition: .2s;
+    }
+
+    & p{
+      transition: .2s;
+      width: fit-content;
+      cursor:default;
+    }
   
     & > ul:nth-of-type(1){
       grid-area: a1;
       display: grid;
       list-style: none;
       gap: 2rem;
-      grid-template-columns: 5rem 1fr;
+      grid-template-columns: 6rem 1fr;
       justify-content: center;
       align-items: center;
       padding: 1rem;
+      max-width: 27rem;
       & img{
           width: 100%;
           height: auto;
           justify-self: center;
+          border-radius: 50%;
+          box-shadow: -3px 3px 0 4px black;
+          transition: 2s;
+
+          &:hover{
+            box-shadow: 0px 0px 0 4px black;
+            transition: .2s;
+          }
+      }
+
+      & li:nth-of-type(2){
+        display: grid;
+        gap: 1rem;
+
+        & h1{
+          font-size: 2rem;
+          animation: --heartbeat 5s infinite;
+        }
+
+        & p{
+          font-style: italic;
+        }
       }
     }
     
@@ -963,38 +1035,74 @@ body {
       grid-area: a2;
       display: grid;
       list-style: none;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 7rem 1fr;
       grid-template-rows: 1fr 1fr;
       gap: 1rem;
       padding: 1rem;
       grid-template-areas: "b1 b2" "b3 b3" ;
       & li:first-of-type{
-          font-weight: bold;
           grid-area: b1;
       }
       & li:nth-of-type(2){
         display: flex;
         flex-direction: column;
         grid-area: b2;
+        font-weight: bold;
+
+      }
+
+      & li:nth-of-type(3){
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        grid-area: b3;
+
+        & p:hover{
+          background: transparent;
+          text-decoration: underline 3px;
+          text-decoration-color: #9796f0;
+        }
       }
       & div{
         display: flex;
         justify-content: flex-start;
-        align-items: flex-start;
+        align-items: flex-end;
         gap: 1rem;
-        grid-area: b3;
+        
   
         & a >img{
           width: clamp(2rem, 5vw, 2.5rem);
           height: clamp(2rem, 5vw, 2.5rem);
+          transition: .3s;
         }
+
+        & a{
+
+          & img:hover{
+            transform: scale(1.1) rotate(8deg);  
+            transition: .3s;
+          }
+          &:nth-child(1) img:hover{content: url(../img/website-2.png);}
+          &:nth-child(2) img:hover{content: url(../img/github-2.png); transform: rotate(-8deg);}
+          &:nth-child(3) img:hover{content: url(../img/codepen-2.png);}
+        }
+
+
+
       }
     }
   
     & iframe{
       grid-area: a3;
       width: 100%;
-      height: 100%;
+      height: 65%;
+      border: solid 5px white;
+      border-radius: .5rem;
+      transition: 3s;
+      &:hover{
+        height: 100%;
+        transition: .5s;
+      }
     }
     
   }
@@ -1002,5 +1110,40 @@ body {
   .carousel-ul {
     height: 12em;
    
+  }
+  
+  @keyframes --heartbeat {
+    0%, 60%, 100% {  
+      transform: rotate(0deg);
+    }
+    30% {
+      transform: rotate(-3deg) scale(1.1);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .stagelights{
+      & li:nth-of-type(n + 3){
+        display: none;
+      }
+    }
+
+    .personsTemplate{
+      display: flex;
+      flex-direction: column;
+      & iframe{
+        display: none;
+      }
+    }
+  }
+  
+  /* Voor mobiel */
+  @media screen and (max-width: 400px) {
+    .personsTemplate{
+      transform: scale(.75);
+    }
+    .person-container{
+      transform: scale(.6);
+    }
   }
   
