@@ -1283,6 +1283,5 @@ section:nth-of-type(2)>article>img {
     color: white;
     text-shadow: 2px 4px 6px #e6b663;
     padding: 1em;
-    
-    font-size: 1.5vw;
+    font-size: 1vw;
   }
