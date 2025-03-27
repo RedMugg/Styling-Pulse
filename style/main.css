@@ -130,6 +130,30 @@ body {
           transform: translateX(0) rotate(0) translateY(0vh);
       }
   }
+
+  @keyframes gordijnenHeropenL2 {
+  
+      0%,
+      100% {
+          transform: translateX(-50vw) rotate(3deg) translateY(-2vh);
+      }
+  
+      50% {
+          transform: translateX(0) rotate(0) translateY(0vh);
+      }
+  }
+  
+  @keyframes gordijnenHeropenR2 {
+  
+      0%,
+      100% {
+          transform: translateX(50vw) rotate(-3deg) translateY(-2vh);
+      }
+  
+      50% {
+          transform: translateX(0) rotate(0) translateY(0vh);
+      }
+  }
   
   .gordijn-container {
       display: flex;
@@ -561,7 +585,6 @@ body {
     bottom: 0;
     width: 4em;
     height: 11em;
-    border:1px solid #000;
   
       animation-name: WalkingUp, WalkingBack;
       animation-duration: 4s;
