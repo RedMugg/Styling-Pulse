@@ -169,10 +169,17 @@ function getID(event) {
         gordijnenR.style.animation = "gordijnenR 6s ease-in-out";
         gordijnenR.style.animationFillMode = "forwards";
 
+        resetAnimation();
+
+
         gordijnenOpen = true;
     } else if (gordijnenL.style.animationName == "gordijnenHeropenL") {
         gordijnenL.style.animation = "gordijnenHeropenL2 6s ease-in-out";
         gordijnenL.style.animationFillMode = "forwards";
+
+        setTimeout(() => {
+            resetAnimation();
+        }, 3000);
 
         gordijnenR.style.animation = "gordijnenHeropenR2 6s ease-in-out";
         gordijnenR.style.animationFillMode = "forwards";
@@ -182,6 +189,10 @@ function getID(event) {
 
         gordijnenR.style.animation = "gordijnenHeropenR 6s ease-in-out";
         gordijnenR.style.animationFillMode = "forwards";
+
+        setTimeout(() => {
+            resetAnimation();
+        }, 3000);
     }
 
 
@@ -199,9 +210,6 @@ function getID(event) {
         persons.forEach(persons => {
             
             setTimeout(() => {
-                
-                resetAnimation();
-
                 if (persons.id == personIDClicked) {
                     let personID = persons.id;
                     let personName = persons.name;
@@ -216,7 +224,13 @@ function getID(event) {
 
                     let personCodepen = persons.codepen;
                     let personPen = persons.codepen_demo;
-                    let personFullPenLink = personCodepen + "/embed/" + personPen;
+                    let personFullPenLink = "";
+
+                    if (personPen != null) {
+                        personFullPenLink = personCodepen + "/embed/" + personPen;
+                    } else {
+                        personFullPenLink = "./gif.html";
+                    }
 
                     const element = document.querySelector(".personDetail");
                     while (element.firstChild) {

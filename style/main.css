@@ -103,75 +103,99 @@ header {
             background-image: linear-gradient(90deg, rgba(214, 65, 65, 1) 59%, rgba(107, 11, 11, 1) 100%);
         }
     }
-}
+  }
+  
+  @keyframes gordijnenR {
+      100% {
+          transform: translateX(50vw) rotate(-3deg) translateY(-2vh);
+      }
+  }
+  
+  @keyframes gordijnenHeropenL {
+  
+      0%,
+      100% {
+          transform: translateX(-50vw) rotate(3deg) translateY(-2vh);
+      }
+  
+      50% {
+          transform: translateX(0) rotate(0) translateY(0vh);
+      }
+  }
+  
+  @keyframes gordijnenHeropenR {
+  
+      0%,
+      100% {
+          transform: translateX(50vw) rotate(-3deg) translateY(-2vh);
+      }
+  
+      50% {
+          transform: translateX(0) rotate(0) translateY(0vh);
+      }
+  }
 
-@keyframes gordijnenR {
-    100% {
-        transform: translateX(50vw) rotate(-3deg) translateY(-2vh);
-    }
-}
-
-@keyframes gordijnenHeropenL {
-
-    0%,
-    100% {
-        transform: translateX(-50vw) rotate(3deg) translateY(-2vh);
-    }
-
-    50% {
-        transform: translateX(0) rotate(0) translateY(0vh);
-    }
-}
-
-@keyframes gordijnenHeropenR {
-
-    0%,
-    100% {
-        transform: translateX(50vw) rotate(-3deg) translateY(-2vh);
-    }
-
-    50% {
-        transform: translateX(0) rotate(0) translateY(0vh);
-    }
-}
-
-.gordijn-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.topgordijn {
-    position: absolute;
-    width: 100%;
-    height: 7vh;
-    display: flex;
-    list-style: none;
-    transition: 3s;
-    z-index: 6;
-
-    li {
-        width: 5%;
-        height: 60%;
-        border-radius: 0 0 2vw 2vw;
-        background-color: darkred;
-
-        &:nth-child(2n) {
-            background: red;
-            background-color: darkred;
-            border: 1px solid black;
-        }
-    }
-}
-
-.podium-container {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-}
-
-.podium {
+  @keyframes gordijnenHeropenL2 {
+  
+      0%,
+      100% {
+          transform: translateX(-50vw) rotate(3deg) translateY(-2vh);
+      }
+  
+      50% {
+          transform: translateX(0) rotate(0) translateY(0vh);
+      }
+  }
+  
+  @keyframes gordijnenHeropenR2 {
+  
+      0%,
+      100% {
+          transform: translateX(50vw) rotate(-3deg) translateY(-2vh);
+      }
+  
+      50% {
+          transform: translateX(0) rotate(0) translateY(0vh);
+      }
+  }
+  
+  .gordijn-container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+  }
+  
+  .topgordijn {
+      position: absolute;
+      width: 100%;
+      height: 7vh;
+      display: flex;
+      list-style: none;
+      transition: 3s;
+      z-index: 6;
+  
+      li {
+          width: 5%;
+          height: 60%;
+          border-radius: 0 0 2vw 2vw;
+          background-color: darkred;
+  
+          &:nth-child(2n) {
+              background: red;
+              background-color: darkred;
+              border: 1px solid black;
+          }
+      }
+  }
+  
+  .podium-container {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+  }
+  
+  .podium {
     position: relative;
     height: 10vh;
     width: 100%;
@@ -571,26 +595,25 @@ section:nth-of-type(2)>article>img {
     bottom: 0;
     width: 4em;
     height: 11em;
-    border: 1px solid #000;
-
-    animation-name: WalkingUp, WalkingBack;
-    animation-duration: 4s;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-}
-
-@keyframes WalkingUp {
-    0% {
-        transform: translateX(-100%)
-    }
-
-    100% {
-        transform: translateX(calc(50vw - 2em))
-    }
-}
-
-/* @keyframes WalkingBack {
+  
+      animation-name: WalkingUp, WalkingBack;
+      animation-duration: 4s;
+      animation-timing-function: linear;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes WalkingUp {
+      0% {
+          transform: translateX(-100%)
+      }
+  
+      100% {
+          transform: translateX(calc(50vw - 2em))
+      }
+  }
+  
+  /* @keyframes WalkingBack {
   0% {
     transform: translateX((calc(50vw - 2em)) scaleX(-1)
   }
