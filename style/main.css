@@ -339,6 +339,7 @@ select {
     margin-top: .5em;
 
     background-color: black;
+    box-shadow: 0 0 4px 2px #e6b663;
     border: 3px #e6b663;
     border-radius: 5px;
     color: #e6b663;
@@ -979,10 +980,17 @@ section:nth-of-type(2)>article>img {
     top: -5px;
     width: var(--head);
     height: var(--head);
-    border-radius: 100%;
+    border-radius: 50%;
     background: #FFD9AB;
     /* /*   border: 1px solid black; */
     animation: transformHead var(--walk-speed) var(--iteration-count) normal ease-in-out forwards;
+}
+
+.headImg{
+    object-fit: cover;
+    width: 100%;
+    border-radius: 50%;
+    border: solid 2px var(--skin-color);
 }
 
 @keyframes transformHead {

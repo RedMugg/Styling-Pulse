@@ -23,6 +23,7 @@ const personLLLeg = document.querySelector('.lowerLeftLeg');
 const personLLeg = document.querySelector('.leftLeg');
 const personLLArm = document.querySelector('.lowerLeftArm');
 const personLArm = document.querySelector('.leftArm');
+const personHeadImg = document.querySelector('.head>img');
 
 var gordijnenOpen = false;
 
@@ -236,6 +237,8 @@ function getID(event) {
                     while (element.firstChild) {
                         element.removeChild(element.firstChild);
                     }
+
+                    personHeadImg.src = "https://fdnd.directus.app/assets/" + personImgSrc;
 
                     // iFrame.src = personFullPenLink;
 
