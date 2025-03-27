@@ -273,9 +273,9 @@ function getID(event) {
                                     <li>
                                         <p>Visit me at:</p>
                                         <div>
-                                        <a href="${website}"><img src="../img/website.png" alt="website"></a>
-                                        <a href="${github}"><img src="../img/github.png" alt="github"></a>
-                                        <a href="${personCodepen}"><img src="../img/codepen.png" alt="codepen"></a>
+                                        <a href="${website}"><img src="img/website.png" alt="website"></a>
+                                        <a href="${github}"><img src="img/github.png" alt="github"></a>
+                                        <a href="${personCodepen}"><img src="img/codepen.png" alt="codepen"></a>
                                         </div>
                                     </li>
                                 </ul>
