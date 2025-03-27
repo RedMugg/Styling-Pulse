@@ -215,7 +215,7 @@ header {
         width: 100%;
         height: 17vh;
         transform: perspective(421px) rotateX(72deg);
-        background: repeating-linear-gradient(to right, #fec06a 0 1%, black 0 8vw);
+        background: repeating-linear-gradient(to right, #fec06a 0 1%, black 0 8vw); 
     }
 }
 
