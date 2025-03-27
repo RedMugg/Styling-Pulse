@@ -1200,3 +1200,69 @@ section:nth-of-type(2)>article>img {
         transform: scale(.6);
     }
 }
+
+/* Intro scherm */
+
+.intro-scherm {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 30vw auto 30vw;
+    grid-template-rows: 20vh auto 40vh;
+    
+    width: 100%;
+    height: 100vh;
+    z-index: 2000;
+    
+    
+    background:  repeating-linear-gradient(to right, #8F2121 0%, #de3333 4%, #de3333 8%);
+    
+    animation-name: introUp;
+    animation-duration: 6s;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  
+  .titel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-column-start: 2;
+    grid-row-start: 2;
+
+    
+    background-color: hsla(337, 2%, 29%, .9);
+    box-shadow: 0px 10px 5px -1px rgba(0,0,0,0.34);
+    border: 0.5em solid #e6b663;
+  }
+  
+  h1 {
+    font-size: 8vw;
+    margin: 0;
+    
+    color: white;
+    text-shadow: 2px 4px 6px #e6b663;
+  }
+  
+  h4 {
+    color: white;
+    text-shadow: 2px 4px 6px #e6b663;
+  }
+  
+  @keyframes introUp {
+    from {
+      top : 0;
+    }
+    to {
+      top: -100vh;
+    }
+  }
+  
+  .titel-p {
+    color: white;
+    text-shadow: 2px 4px 6px #e6b663;
+    padding: 1em;
+    
+    font-size: 1.5vw;
+  }
